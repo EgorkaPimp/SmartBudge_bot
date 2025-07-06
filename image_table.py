@@ -6,6 +6,7 @@ from aiogram import Bot
 from aiogram.types import BufferedInputFile
 import sqlite3
 
+id = [933194755, 875300228]
 
 def format_amount(amount):
     try:
@@ -14,7 +15,7 @@ def format_amount(amount):
     except:
         return str(amount)
 
-async def create_table_image(bot: Bot, i):
+async def create_table_image(bot: Bot, id_user):
     try:
         # 1. Получаем данные из БД
         with sqlite3.connect('db/home.db') as conn:
@@ -75,7 +76,7 @@ async def create_table_image(bot: Bot, i):
         img_byte_arr.seek(0)
 
         await bot.send_photo(
-            chat_id=i,
+            chat_id=id_user,
             photo=BufferedInputFile(
                 img_byte_arr.getvalue(),
                 filename="categories_report.png"

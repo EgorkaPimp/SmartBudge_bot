@@ -11,7 +11,7 @@ from token_file import read_file
 from handlers import register_handlers
 from collback import add_fin_callbacks
 
-my_token = read_file()
+my_token = read_file()[:-1]
 logging.basicConfig(level=logging.DEBUG)
 
 
