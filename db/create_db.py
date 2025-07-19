@@ -14,8 +14,8 @@ base_categories = {'ремонт':40000,
                     'доставка':6000,
                     'здоровье':15000,
                     'бьюти хуюти':10000,
-                    'личные Камила':14000,
-                    'личные Егор':14000,
+                    'камила':14000,
+                    'eгор':14000,
                    }
 
 id = [933194755, 875300228]
@@ -63,7 +63,7 @@ def search_base_db():
         cursor = conn.cursor()
         cursor.execute(f"SELECT 1 FROM plan "
                        "WHERE category = ?",
-                       ('еда',))
+                       ('ремонт',))
         return cursor.fetchone() is not None
 
 
