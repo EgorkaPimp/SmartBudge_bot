@@ -132,3 +132,75 @@ DEBUG - 2025-08-21 13:36:01,173 - apscheduler.scheduler - Next wakeup is due at 
 INFO - 2025-08-21 13:36:01,360 - aiogram.dispatcher - Run polling for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
 INFO - 2025-08-21 13:36:01,962 - aiogram.event - Update id=508902615 is handled. Duration 541 ms by bot id=7526462512
 INFO - 2025-08-21 13:36:20,554 - aiogram.event - Update id=508902616 is handled. Duration 134 ms by bot id=7526462512
+DEBUG - 2025-08-21 21:44:08,685 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 21:44:08,708 - tzlocal - /etc/timezone found, contents:
+ Europe/Moscow
+
+DEBUG - 2025-08-21 21:44:08,708 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 21:44:08,709 - tzlocal - 2 found:
+ {'/etc/timezone': 'Europe/Moscow', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+INFO - 2025-08-21 21:44:08,709 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:44:08,709 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:44:08,709 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 21:44:08,710 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 21:44:08,710 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 21:44:08,710 - root - Планировщик запущен
+INFO - 2025-08-21 21:44:08,710 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 21:44:08,710 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 21:44:08,710 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 3651.289526 seconds)
+INFO - 2025-08-21 21:44:10,027 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 21:47:04,078 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 21:47:29,001 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 21:47:29,018 - tzlocal - /etc/timezone found, contents:
+ Europe/Moscow
+
+DEBUG - 2025-08-21 21:47:29,019 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 21:47:29,019 - tzlocal - 2 found:
+ {'/etc/timezone': 'Europe/Moscow', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+INFO - 2025-08-21 21:47:29,020 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:47:29,020 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:47:29,020 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 21:47:29,020 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 21:47:29,020 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 21:47:29,021 - root - Планировщик запущен
+INFO - 2025-08-21 21:47:29,021 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 21:47:29,021 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 21:47:29,021 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 3450.978604 seconds)
+INFO - 2025-08-21 21:47:29,279 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 21:47:38,839 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 21:47:38,860 - tzlocal - /etc/timezone found, contents:
+ Europe/Moscow
+
+DEBUG - 2025-08-21 21:47:38,860 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 21:47:38,861 - tzlocal - 2 found:
+ {'/etc/timezone': 'Europe/Moscow', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+INFO - 2025-08-21 21:47:38,861 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:47:38,861 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:47:38,862 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 21:47:38,862 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 21:47:38,862 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 21:47:38,862 - root - Планировщик запущен
+INFO - 2025-08-21 21:47:38,862 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 21:47:38,862 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 21:47:38,862 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 3441.137422 seconds)
+INFO - 2025-08-21 21:47:39,033 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 21:47:59,722 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 21:47:59,739 - tzlocal - /etc/timezone found, contents:
+ Europe/Moscow
+
+DEBUG - 2025-08-21 21:47:59,740 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 21:47:59,740 - tzlocal - 2 found:
+ {'/etc/timezone': 'Europe/Moscow', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+INFO - 2025-08-21 21:47:59,740 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:47:59,740 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 21:47:59,741 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 21:47:59,741 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 21:47:59,741 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 21:47:59,741 - root - Планировщик запущен
+INFO - 2025-08-21 21:47:59,741 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 21:47:59,741 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 21:47:59,741 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 3420.258217 seconds)
+INFO - 2025-08-21 21:47:59,968 - aiogram.dispatcher - Run polling for bot @test_money_pimp_bot id=7565826456 - 'test_money'
+WARNING - 2025-08-21 21:48:06,736 - aiogram.dispatcher - Received SIGINT signal
+INFO - 2025-08-21 21:48:06,737 - aiogram.dispatcher - Polling stopped for bot @test_money_pimp_bot id=7565826456 - 'test_money'
+INFO - 2025-08-21 21:48:06,737 - aiogram.dispatcher - Polling stopped
