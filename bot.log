@@ -37,3 +37,98 @@ INFO - 2025-08-21 12:51:34,056 - aiogram.event - Update id=930423411 is handled.
 WARNING - 2025-08-21 13:00:19,191 - aiogram.dispatcher - Received SIGINT signal
 INFO - 2025-08-21 13:00:19,192 - aiogram.dispatcher - Polling stopped for bot @test_money_pimp_bot id=7565826456 - 'test_money'
 INFO - 2025-08-21 13:00:19,192 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 13:31:31,977 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 13:31:32,052 - tzlocal - /etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG - 2025-08-21 13:31:32,053 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 13:31:32,054 - tzlocal - 2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+WARNING - 2025-08-21 13:31:32,055 - tzlocal - /etc/timezone is deprecated in some distros, and no longer reliable. tzlocal is ignoring it, and you can likely delete it.
+INFO - 2025-08-21 13:31:32,055 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:31:32,056 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:31:32,057 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 13:31:32,057 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 13:31:32,057 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 13:31:32,057 - root - Планировщик запущен
+INFO - 2025-08-21 13:31:32,058 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 13:31:32,058 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 13:31:32,058 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 33207.941102 seconds)
+INFO - 2025-08-21 13:31:32,212 - aiogram.dispatcher - Run polling for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:31:32,500 - aiogram.event - Update id=508902604 is handled. Duration 233 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,541 - aiogram.event - Update id=508902608 is handled. Duration 267 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,585 - aiogram.event - Update id=508902606 is handled. Duration 315 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,636 - aiogram.event - Update id=508902610 is handled. Duration 359 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,697 - aiogram.event - Update id=508902603 is handled. Duration 434 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,744 - aiogram.event - Update id=508902609 is handled. Duration 469 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,768 - aiogram.event - Update id=508902607 is handled. Duration 497 ms by bot id=7526462512
+INFO - 2025-08-21 13:31:32,824 - aiogram.event - Update id=508902605 is handled. Duration 556 ms by bot id=7526462512
+WARNING - 2025-08-21 13:32:00,212 - aiogram.dispatcher - Received SIGINT signal
+INFO - 2025-08-21 13:32:00,212 - aiogram.dispatcher - Polling stopped for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:32:00,213 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 13:32:28,026 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 13:32:28,094 - tzlocal - /etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG - 2025-08-21 13:32:28,095 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 13:32:28,096 - tzlocal - 2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+WARNING - 2025-08-21 13:32:28,096 - tzlocal - /etc/timezone is deprecated in some distros, and no longer reliable. tzlocal is ignoring it, and you can likely delete it.
+INFO - 2025-08-21 13:32:28,097 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:32:28,097 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:32:28,098 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 13:32:28,098 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 13:32:28,098 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 13:32:28,099 - root - Планировщик запущен
+INFO - 2025-08-21 13:32:28,099 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 13:32:28,100 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 13:32:28,100 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 33151.899772 seconds)
+INFO - 2025-08-21 13:32:28,236 - aiogram.dispatcher - Run polling for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:32:33,435 - aiogram.event - Update id=508902611 is handled. Duration 550 ms by bot id=7526462512
+INFO - 2025-08-21 13:33:09,464 - aiogram.event - Update id=508902612 is handled. Duration 79 ms by bot id=7526462512
+WARNING - 2025-08-21 13:34:03,824 - aiogram.dispatcher - Received SIGTERM signal
+INFO - 2025-08-21 13:34:03,829 - aiogram.dispatcher - Polling stopped for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:34:03,829 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 13:34:10,013 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 13:34:10,138 - tzlocal - /etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG - 2025-08-21 13:34:10,139 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 13:34:10,140 - tzlocal - 2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+WARNING - 2025-08-21 13:34:10,141 - tzlocal - /etc/timezone is deprecated in some distros, and no longer reliable. tzlocal is ignoring it, and you can likely delete it.
+INFO - 2025-08-21 13:34:10,141 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:34:10,142 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:34:10,143 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 13:34:10,143 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 13:34:10,143 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 13:34:10,143 - root - Планировщик запущен
+INFO - 2025-08-21 13:34:10,144 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 13:34:10,144 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 13:34:10,144 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 33049.855337 seconds)
+INFO - 2025-08-21 13:34:10,328 - aiogram.dispatcher - Run polling for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:34:14,859 - aiogram.event - Update id=508902613 is handled. Duration 554 ms by bot id=7526462512
+INFO - 2025-08-21 13:34:25,413 - aiogram.event - Update id=508902614 is handled. Duration 145 ms by bot id=7526462512
+WARNING - 2025-08-21 13:35:55,412 - aiogram.dispatcher - Received SIGTERM signal
+INFO - 2025-08-21 13:35:55,417 - aiogram.dispatcher - Polling stopped for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:35:55,417 - aiogram.dispatcher - Polling stopped
+DEBUG - 2025-08-21 13:36:01,055 - asyncio - Using selector: EpollSelector
+DEBUG - 2025-08-21 13:36:01,167 - tzlocal - /etc/timezone found, contents:
+ Etc/UTC
+
+DEBUG - 2025-08-21 13:36:01,168 - tzlocal - /etc/localtime found
+DEBUG - 2025-08-21 13:36:01,169 - tzlocal - 2 found:
+ {'/etc/timezone': 'Etc/UTC', '/etc/localtime is a symlink to': 'Europe/Moscow'}
+WARNING - 2025-08-21 13:36:01,169 - tzlocal - /etc/timezone is deprecated in some distros, and no longer reliable. tzlocal is ignoring it, and you can likely delete it.
+INFO - 2025-08-21 13:36:01,170 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:36:01,170 - apscheduler.scheduler - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO - 2025-08-21 13:36:01,171 - apscheduler.scheduler - Added job "base_category_update" to job store "default"
+INFO - 2025-08-21 13:36:01,171 - apscheduler.scheduler - Added job "reminder_day" to job store "default"
+INFO - 2025-08-21 13:36:01,171 - apscheduler.scheduler - Scheduler started
+INFO - 2025-08-21 13:36:01,172 - root - Планировщик запущен
+INFO - 2025-08-21 13:36:01,172 - aiogram.dispatcher - Start polling
+DEBUG - 2025-08-21 13:36:01,173 - apscheduler.scheduler - Looking for jobs to run
+DEBUG - 2025-08-21 13:36:01,173 - apscheduler.scheduler - Next wakeup is due at 2025-08-21 22:45:00+03:00 (in 32938.826714 seconds)
+INFO - 2025-08-21 13:36:01,360 - aiogram.dispatcher - Run polling for bot @HomeGorelov_bot id=7526462512 - 'OurHome'
+INFO - 2025-08-21 13:36:01,962 - aiogram.event - Update id=508902615 is handled. Duration 541 ms by bot id=7526462512
+INFO - 2025-08-21 13:36:20,554 - aiogram.event - Update id=508902616 is handled. Duration 134 ms by bot id=7526462512
