@@ -12,6 +12,7 @@ from handlers import register_handlers
 from collback import add_fin_callbacks
 
 my_token = read_file()[:-1]
+my_token = read_file()
 logging.basicConfig(filename='bot.log', level=logging.DEBUG,
                     format='%(levelname)s - %(asctime)s - %(name)s - %(message)s')
 
