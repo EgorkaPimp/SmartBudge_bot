@@ -1,6 +1,7 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from BaseClass.log_class import LogCLassAll
+from BaseClass.db_class import SearchDB
 
 class SchedulerStart:
     def __init__(self):
@@ -18,8 +19,10 @@ class SchedulerStartBot(SchedulerStart):
 class SchedulerTest(SchedulerStart):
     def __init__(self):
         super().__init__()
-        self.time_test = 10
-        self.scheduler.add_job(test_scheduler, "interval", seconds=self.time_test)
+        db = SearchDB()
+        self.list_default_scheduler = db.search_default_scheduler()
+        self.scheduler.add_job(test_scheduler, "interval",
+                               seconds=self.list_default_scheduler["minute"])
         self.scheduler.start()
         LogCLassAll().info("Start scheduler test")
         

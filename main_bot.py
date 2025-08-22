@@ -3,6 +3,7 @@ from datetime import datetime
 from BaseClass.log_class import LogCLassAll
 from BaseClass.start_class import StartBot
 from BaseClass.scheduler_class import SchedulerStartBot, SchedulerTest
+from BaseClass.db_class import CreateDB
 
     
 async def main():
@@ -10,6 +11,7 @@ async def main():
     bot = StartBot()
     SchedulerStartBot()
     SchedulerTest()
+    CreateDB()
     await bot.run()
     
     
