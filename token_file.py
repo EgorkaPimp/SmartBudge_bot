@@ -13,4 +13,3 @@ def read_file():
         path_to_token = '/home/token/home_token.txt'
         token = read(path_to_token)[:-1]
     return token
-

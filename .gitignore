@@ -3,6 +3,6 @@
 /workspace.xml
 venv/
 __pycache__/
-
-token_file.py
 bot.log
+*.log
+log/
