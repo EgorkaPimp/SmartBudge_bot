@@ -11,20 +11,25 @@ class SchedulerStart:
 class SchedulerStartBot(SchedulerStart):
     def __init__(self):
         super().__init__()
+        db = SearchDB()
+        self.list_default_scheduler = db.search_default_scheduler()
+        
         self.scheduler.add_job(func=test_scheduler,
-                          trigger=CronTrigger(minute=20))
+                          trigger=CronTrigger(hour=self.list_default_scheduler["hour"],
+                                              minute=self.list_default_scheduler["minute"]))
         LogCLassAll().info("Start scheduler Bot")
         self.scheduler.start()
         
-class SchedulerTest(SchedulerStart):
-    def __init__(self):
-        super().__init__()
-        db = SearchDB()
-        self.list_default_scheduler = db.search_default_scheduler()
-        self.scheduler.add_job(test_scheduler, "interval",
-                               seconds=self.list_default_scheduler["minute"])
-        self.scheduler.start()
-        LogCLassAll().info("Start scheduler test")
+        
+# class SchedulerTest(SchedulerStart):
+#     def __init__(self):
+#         super().__init__()
+#         db = SearchDB()
+#         self.list_default_scheduler = db.search_default_scheduler()
+#         self.scheduler.add_job(test_scheduler, "interval",
+#                                seconds=self.list_default_scheduler["minute"])
+#         self.scheduler.start()
+#         LogCLassAll().info("Start scheduler test")
         
         
 def test_scheduler():

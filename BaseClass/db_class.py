@@ -20,7 +20,26 @@ class CreateDB(InitDB):
             )
         ''')
         self.fill_scheduler_default()
+        
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS plan (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                category TEXT,
+                sum_money INTEGER 
+            )
+        ''')
+        
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS expenses (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                category TEXT,
+                sum_money INTEGER 
+            )
+        ''')
         self.conn.commit()
+        LogCLassAll().info("DataBase correct started")
     
     def fill_scheduler_default(self):
         self.cursor.execute("SELECT 1 FROM scheduler_default WHERE state = ?",
@@ -44,3 +63,25 @@ class SearchDB(InitDB):
         result_list = [{"day": row[1], "hour": row[2], "minute": row[3]} for row in rows]
         LogCLassAll().debug(f"Values ​​from the base planner are obtained {result_list}")
         return result_list[0]
+    
+    def search_user(self, user_id: int):
+        self.cursor.execute("SELECT 1 FROM plan WHERE user_id = ?",
+                       (user_id,))
+        if self.cursor.fetchone():
+            LogCLassAll().debug("User with data id exists")
+            return True
+        else:
+            LogCLassAll().debug(f"New user {user_id}")
+            return False
+        
+class AddDB(InitDB):
+    def __init__(self):
+        super().__init__()
+    
+    def add_category_db(self, user_id: int, category: str, sum_money: int):
+        self.cursor.execute("INSERT INTO plan "
+                            "(user_id, category, sum_money)"
+                            "VALUES (?, ?, ?)",
+                            (user_id, category, sum_money))
+        self.conn.commit()
+        LogCLassAll().info(f"Add new category {category} for user: {user_id} with sum {sum_money} ")

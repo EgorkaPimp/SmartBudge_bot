@@ -2,16 +2,17 @@ import asyncio
 from datetime import datetime
 from BaseClass.log_class import LogCLassAll
 from BaseClass.start_class import StartBot
-from BaseClass.scheduler_class import SchedulerStartBot, SchedulerTest
+from BaseClass.scheduler_class import SchedulerStartBot
 from BaseClass.db_class import CreateDB
 
+
+import app.handlers, app.collback_add_category
     
 async def main():
     LogCLassAll().info("Start logging")
+    CreateDB()
     bot = StartBot()
     SchedulerStartBot()
-    SchedulerTest()
-    CreateDB()
     await bot.run()
     
     
