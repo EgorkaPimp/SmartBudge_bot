@@ -2,3 +2,4 @@ from app import about_app  # noqa: F401
 from app import callback_add_category # noqa: F401
 from app import handlers_base # noqa: F401
 from app import menu_app # noqa: F401
+from app.reverse_budget import reverse_budget_app # noqa: F401
