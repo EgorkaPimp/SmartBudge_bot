@@ -5,8 +5,7 @@ from BaseClass.start_class import StartBot
 from BaseClass.scheduler_class import SchedulerStartBot
 from BaseClass.db_class import CreateDB
 
-
-from app import *
+from app import *  # noqa: F403
     
 async def main():
     LogCLassAll().info("Start logging")

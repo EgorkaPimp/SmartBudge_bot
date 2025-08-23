@@ -7,5 +7,7 @@ from aiogram import types
 async def about(callback: types.CallbackQuery):
     LogCLassAll().info("Showing information about me")
     await callback.answer()
-    await callback.message.answer(Read.read_txt('text/about.txt'), 
-                                  parse_mode="Markdown")
+    image = types.FSInputFile('images/about.png')
+    await callback.message.answer_photo(photo=image,
+                                        caption=Read.read_txt('text/about.txt'), 
+                                        parse_mode="Markdown")
