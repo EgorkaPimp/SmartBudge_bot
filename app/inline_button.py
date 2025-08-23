@@ -5,11 +5,8 @@ def app_func():
         [InlineKeyboardButton(text="Добавить категорию",
                               callback_data='add_category')],
 
-        [InlineKeyboardButton(text="Показать категории",
-                              callback_data='delete_user')],
-        
-        [InlineKeyboardButton(text="Показать таблицу",
-                              callback_data='delete_user')],
+        [InlineKeyboardButton(text="Узнать обо мне побольше",
+                              callback_data='about')],
 
         [InlineKeyboardButton(text="My_Git 😺",
                               url='https://github.com/EgorkaPimp/home_bot')]

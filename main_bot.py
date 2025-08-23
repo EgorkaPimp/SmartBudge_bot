@@ -6,7 +6,7 @@ from BaseClass.scheduler_class import SchedulerStartBot
 from BaseClass.db_class import CreateDB
 
 
-import app.handlers, app.collback_add_category
+from app import *
     
 async def main():
     LogCLassAll().info("Start logging")
