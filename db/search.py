@@ -51,3 +51,10 @@ class SearchDB(InitDB):
             return False
         else:
             return True
+        
+    async def search_category_table(self, user_id: int):
+        self.cursor.execute("SELECT category FROM reverse_budget "
+                            "WHERE user_id = ?",
+                            (user_id,))
+        all_category = self.cursor.fetchall()
+        return all_category
