@@ -30,3 +30,24 @@ class SearchDB(InitDB):
         result_list = [{"reverse_budget": row[2], "financial_diary": row[3]} for row in rows]
         LogCLassAll().debug(f"Search type list {result_list[0]}")
         return result_list[0]
+    
+    async def view_categories(self, user_id: int):
+        self.cursor.execute("SELECT * FROM reverse_budget "
+                            "WHERE user_id = ?",
+                            (user_id,))
+        tables = {}
+        for i in self.cursor.fetchall():
+            tables[i[2]] = i[3]
+        LogCLassAll().debug(f"Search category {tables}")
+        return tables
+    
+    async def search_category_double(self, user_id: int, category: str):
+        LogCLassAll().debug(f'Values ​​passed for search {category}')
+        self.cursor.execute("SELECT 1 FROM reverse_budget "
+                            "WHERE user_id = ? AND category = ? ",
+                            (user_id, category,))
+        if self.cursor.fetchone() is None:
+            LogCLassAll().debug(f"search double category user:{user_id} category:{category}")
+            return False
+        else:
+            return True

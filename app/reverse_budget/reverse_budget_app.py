@@ -22,5 +22,3 @@ async def reverse_budget(callback: types.CallbackQuery):
     else:
         await callback.message.answer("Это не ваша категория")
         
-    
-    

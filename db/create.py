@@ -25,6 +25,15 @@ class CreateDB(InitDB):
         ''')
         
         self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS reverse_budget (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                category TEXT,
+                sum_money INTEGER 
+            )
+        ''')
+        
+        self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS expenses (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER,

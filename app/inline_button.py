@@ -40,15 +40,15 @@ def app_menu_revers():
     inline_kb_list = [
         [
             InlineKeyboardButton(text="➕✨ Добавить категорию",
-                              callback_data='reverse_budget'),
+                              callback_data='add_category'),
             InlineKeyboardButton(text="📝💸 Внести трату",
-                              callback_data='reverse_budget_about')
+                              callback_data='add_spending')
         ],
         [
             InlineKeyboardButton(text="📊✅ Показать таблицу",
-                              callback_data='financial_diary'),
+                              callback_data='show_table'),
             InlineKeyboardButton(text="✏️🔧 Изменить категорию",
-                              callback_data='financial_diary_about')
+                              callback_data='change_category')
         ],
         [
             InlineKeyboardButton(text="⚙️ Настройки",
