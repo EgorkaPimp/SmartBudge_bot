@@ -1,7 +1,8 @@
 from aiogram import types
 from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
-from BaseClass.db_class import SearchDB, AddDB
+from db.search import SearchDB
+from db.add import AddDB
 from app.inline_button import app_menu_revers
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("reverse_budget"))

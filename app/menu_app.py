@@ -4,7 +4,7 @@ from aiogram import types
 from BaseClass.start_class import InstanceBot
 from app.inline_button import app_menu, app_menu_revers
 from BaseClass.read_class import Read
-from BaseClass.db_class import SearchDB
+from db.search import SearchDB
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("press_menu"))
 async def pres_menu(callback: types.CallbackQuery):

@@ -1,7 +1,7 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from BaseClass.log_class import LogCLassAll
-from BaseClass.db_class import SearchDB
+from db.search import SearchDB
 
 class SchedulerStart:
     def __init__(self):

@@ -3,7 +3,7 @@ from BaseClass.log_class import LogCLassAll
 from aiogram import types
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
-from BaseClass.db_class import AddDB
+from db.add import AddDB
 
 class Add_Finance(StatesGroup):
     waiting_category = State()

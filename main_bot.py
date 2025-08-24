@@ -3,7 +3,7 @@ from datetime import datetime
 from BaseClass.log_class import LogCLassAll
 from BaseClass.start_class import StartBot
 from BaseClass.scheduler_class import SchedulerStartBot
-from BaseClass.db_class import CreateDB
+from db.create import CreateDB
 
 from app import *  # noqa: F403
     
