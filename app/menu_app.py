@@ -2,8 +2,9 @@ from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
 from aiogram import types
 from BaseClass.start_class import InstanceBot
-from app.inline_button import app_menu
+from app.inline_button import app_menu, app_menu_revers
 from BaseClass.read_class import Read
+from BaseClass.db_class import SearchDB
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("press_menu"))
 async def pres_menu(callback: types.CallbackQuery):
@@ -14,11 +15,20 @@ async def pres_menu(callback: types.CallbackQuery):
 async def menu(chat: int):
     LogCLassAll().debug("function 'menu' started correct")
     image = types.FSInputFile('images/logo.png')
-    await InstanceBot.bot.send_photo(chat_id=chat,
-                                    photo=image,
-                                    caption="*Меню:* выбери категорию", 
-                                    parse_mode="Markdown",
-                                    reply_markup=app_menu())
+    if SearchDB().search_user(chat):
+        type_budget = SearchDB().search_type_budget(chat)
+        if type_budget["reverse_budget"] == 1:
+            await InstanceBot.bot.send_photo(chat_id=chat,
+                                            photo=image,
+                                            caption='*Обратный бюджет*',
+                                            parse_mode='Markdown',
+                                            reply_markup=app_menu_revers())
+    else:
+        await InstanceBot.bot.send_photo(chat_id=chat,
+                                        photo=image,
+                                        caption="*Меню:* выбери категорию", 
+                                        parse_mode="Markdown",
+                                        reply_markup=app_menu())
     
 @RouterStore.my_router.callback_query(CallbackDataFilter("reverse_budget_about"))
 async def reverse_budget_about(callback: types.CallbackQuery):

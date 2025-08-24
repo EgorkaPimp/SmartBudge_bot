@@ -35,3 +35,24 @@ def app_menu():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def app_menu_revers():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="➕✨ Добавить категорию",
+                              callback_data='reverse_budget'),
+            InlineKeyboardButton(text="📝💸 Внести трату",
+                              callback_data='reverse_budget_about')
+        ],
+        [
+            InlineKeyboardButton(text="📊✅ Показать таблицу",
+                              callback_data='financial_diary'),
+            InlineKeyboardButton(text="✏️🔧 Изменить категорию",
+                              callback_data='financial_diary_about')
+        ],
+        [
+            InlineKeyboardButton(text="⚙️ Настройки",
+                            callback_data='settings'),
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
