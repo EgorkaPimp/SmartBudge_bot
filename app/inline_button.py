@@ -60,13 +60,28 @@ def app_menu_revers():
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
 
-async def categories(user_id: int):
+async def categories(user_id: int, interceptor: str):
     LogCLassAll().debug(f"Start search category user: {user_id}")
     categories = await SearchDB().search_category_table(user_id)
     inline_kb_list = []
     for cat in categories:
         format_key = []
         format_key.append(InlineKeyboardButton(text=f"{cat[0].capitalize()}",
-                                               callback_data=f'spending_{cat[0].capitalize()}'))
+                                               callback_data=f'{interceptor}_{cat[0].capitalize()}'))
         inline_kb_list.append(format_key)
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def revers_db_setting():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="🗂️✨ Категория",
+                              callback_data='rename_category'),
+            InlineKeyboardButton(text="🎲💎 Подкрутить сумму",
+                              callback_data='change_sum')
+        ],
+        [
+            InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
+                            callback_data='back_menu'),
+        ]
+    ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

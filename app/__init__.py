@@ -5,3 +5,4 @@ from app.reverse_budget import reverse_budget_app # noqa: F401
 from app.reverse_budget import reverse_add_category # noqa: F401
 from app.reverse_budget import reverse_show_table # noqa: F401
 from app.reverse_budget import reverse_add_spending # noqa: F401
+from app.reverse_budget import reverse_setting # noqa: F401
