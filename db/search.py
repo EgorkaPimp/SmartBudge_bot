@@ -45,7 +45,7 @@ class SearchDB(InitDB):
         LogCLassAll().debug(f'Values ​​passed for search {category}')
         self.cursor.execute("SELECT 1 FROM reverse_budget "
                             "WHERE user_id = ? AND category = ? ",
-                            (user_id, category,))
+                            (user_id, category.lower(),))
         if self.cursor.fetchone() is None:
             LogCLassAll().debug(f"search double category user:{user_id} category:{category}")
             return False
@@ -58,3 +58,22 @@ class SearchDB(InitDB):
                             (user_id,))
         all_category = self.cursor.fetchall()
         return all_category
+    
+    async def search_user_in_reverse(self, user_id: int):
+        self.cursor.execute("SELECT 1 FROM reverse_budget "
+                            "WHERE user_id = ?",
+                            (user_id,))
+        if self.cursor.fetchone():
+            LogCLassAll().debug("User with data id exists in reverse_budget")
+            return True
+        else:
+            LogCLassAll().debug(f"User have not category user: {user_id}")
+            return False
+        
+    async def search_sum_in_reverse_budget(self, user_id: int, category: str):
+        LogCLassAll().debug("Start search sum in reverse_budget")
+        self.cursor.execute("SELECT sum_money FROM reverse_budget "
+                            "WHERE user_id = ? AND category = ?",
+                            (user_id, category.lower(),))
+        sum_db = self.cursor.fetchone()
+        return sum_db[0]

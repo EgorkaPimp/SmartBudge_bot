@@ -9,11 +9,11 @@ class AddDB(InitDB):
         self.cursor.execute("INSERT INTO plan "
                             "(user_id, category, sum_money)"
                             "VALUES (?, ?, ?)",
-                            (user_id, category, sum_money))
+                            (user_id, category.lower(), sum_money))
         self.cursor.execute("INSERT INTO reverse_budget "
                             "(user_id, category, sum_money)"
                             "VALUES (?, ?, ?)",
-                            (user_id, category, sum_money))
+                            (user_id, category.lower(), sum_money))
         self.conn.commit()
         LogCLassAll().info(f"Add new category {category} for user: {user_id} with sum {sum_money} ")
         
