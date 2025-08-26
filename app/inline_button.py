@@ -85,3 +85,45 @@ def revers_db_setting():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def revers_setting():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="🔄 Обновить период",
+                              callback_data='update_period'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='update_period_about')
+        ],
+        [
+            InlineKeyboardButton(text="🤝 Совместные траты",
+                              callback_data='shared_expenses'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='shared_expenses_about')
+        ],
+        [
+            InlineKeyboardButton(text="🔔 Оповещение",
+                              callback_data='notification'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='notification_about')
+        ],
+        [
+            InlineKeyboardButton(text="🗑️ Удалиться",
+                              callback_data='delete_account'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='delete_account_about')
+        ],
+        [
+            InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
+                            callback_data='back_menu'),
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def back_setting():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="🌀⚙️ Вернуться в настройки",
+                            callback_data='back_setting'),
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

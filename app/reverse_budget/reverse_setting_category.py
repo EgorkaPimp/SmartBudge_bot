@@ -6,7 +6,6 @@ from aiogram import types, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from app.inline_button import revers_db_setting, categories, app_menu_revers
-from app.menu_app import menu
 from db.update import UpdateDB
 
 class Add_Finance(StatesGroup):
@@ -23,11 +22,6 @@ async def change_category(callback: types.CallbackQuery):
                                         'Вы можете изменить название и сумму выбранной категории',
                                         reply_markup=revers_db_setting())
     
-@RouterStore.my_router.callback_query(CallbackDataFilter("back_menu"))
-async def back_menu_revers(callback: types.CallbackQuery):
-    LogCLassAll().debug("Press button: back_menu")
-    await callback.answer()
-    await menu(callback.from_user.id)
     
 @RouterStore.my_router.callback_query(CallbackDataFilter("rename_category"))
 async def add_spending_choice_category(callback: types.CallbackQuery):

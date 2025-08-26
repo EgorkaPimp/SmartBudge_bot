@@ -50,3 +50,9 @@ async def financial_diary(callback: types.CallbackQuery):
                                 "🥺К сожелению данная функция находиться в разработке\n\n"
                                 "🫡Я уже тружуусь что бы все исправить!",
                                 parse_mode="Markdown")
+    
+@RouterStore.my_router.callback_query(CallbackDataFilter("back_menu"))
+async def back_menu_revers(callback: types.CallbackQuery):
+    LogCLassAll().debug("Press button: back_menu")
+    await callback.answer()
+    await menu(callback.from_user.id)
