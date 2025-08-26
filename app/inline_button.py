@@ -127,3 +127,14 @@ def back_setting():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def confirmation_deletion():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="Да",
+                            callback_data='back_setting'),
+            InlineKeyboardButton(text="Нет",
+                            callback_data='back_setting')
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
