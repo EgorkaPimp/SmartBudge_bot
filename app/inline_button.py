@@ -69,14 +69,19 @@ async def categories(user_id: int, interceptor: str):
         format_key.append(InlineKeyboardButton(text=f"{cat[0].capitalize()}",
                                                callback_data=f'{interceptor}_{cat[0].capitalize()}'))
         inline_kb_list.append(format_key)
+    back = [InlineKeyboardButton(text="Вернуться",
+                                callback_data='back_menu')]
+    inline_kb_list.append(back)
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
 def revers_db_setting():
     inline_kb_list = [
         [
-            InlineKeyboardButton(text="🗂️✨ Категория",
+            InlineKeyboardButton(text="🗂️✨ Название",
                               callback_data='rename_category'),
-            InlineKeyboardButton(text="🎲💎 Подкрутить сумму",
+            InlineKeyboardButton(text="🎲💎 Сумма",
+                              callback_data='change_sum'),
+            InlineKeyboardButton(text="🗂️💀 Удалить",
                               callback_data='change_sum')
         ],
         [
@@ -128,6 +133,15 @@ def back_setting():
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
+def back_menu():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="Вернуться",
+                            callback_data='back_menu'),
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
 def confirmation_deletion():
     inline_kb_list = [
         [
@@ -135,6 +149,15 @@ def confirmation_deletion():
                             callback_data='back_setting'),
             InlineKeyboardButton(text="Нет",
                             callback_data='back_setting')
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def back_start():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="Вернуться",
+                            callback_data='back_start')
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

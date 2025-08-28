@@ -9,6 +9,7 @@ from app.inline_button import app_menu_revers
 async def reverse_budget(callback: types.CallbackQuery):
     LogCLassAll().debug("Press revers budget")
     await callback.answer()
+    await callback.message.delete()
     user_id = callback.from_user.id
     image = types.FSInputFile('images/logo.png')
     if not SearchDB().search_user(user_id):

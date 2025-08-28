@@ -4,7 +4,7 @@ from BaseClass.read_class import Read
 from aiogram import types, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from app.inline_button import categories, app_menu_revers
+from app.inline_button import categories, app_menu_revers, back_menu
 from db.search import SearchDB
 from db.update import UpdateDB
 
@@ -16,6 +16,7 @@ class Add_Finance(StatesGroup):
 async def add_spending_choice_category(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: add_spending")
     await callback.answer()
+    await callback.message.delete()
     if await SearchDB().search_user_in_reverse(callback.from_user.id):
         categories_map = await categories(callback.from_user.id, "spending")
         await callback.message.answer('Выбери категорию',
@@ -31,7 +32,8 @@ async def write_spending_sum(callback: types.CallbackQuery, state: FSMContext):
     LogCLassAll().debug(f"Choice category: {category}")
     await state.update_data(category=category)
     await state.set_state(Add_Finance.waiting_sum_spending)
-    await callback.message.edit_text(f"📊 Сколько монет положим в категорию: {category}? 🪙")
+    await callback.message.edit_text(f"📊 Сколько монет положим в категорию: {category}? 🪙",
+                                     reply_markup=back_menu())
     
 @RouterStore.my_router.message(Add_Finance.waiting_sum_spending)
 async def del_cat_inc(message: types.Message, state: FSMContext):

@@ -2,7 +2,7 @@ from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
 from aiogram import types
 from BaseClass.start_class import InstanceBot
-from app.inline_button import app_menu, app_menu_revers
+from app.inline_button import app_menu, app_menu_revers, back_menu
 from BaseClass.read_class import Read
 from db.search import SearchDB
 
@@ -10,8 +10,8 @@ from db.search import SearchDB
 async def pres_menu(callback: types.CallbackQuery):
     LogCLassAll().debug("callback 'menu' press")
     await callback.answer()
+    await callback.message.delete()
     await menu(callback.from_user.id)
-     
 async def menu(chat: int):
     LogCLassAll().debug("function 'menu' started correct")
     image = types.FSInputFile('images/logo.png')
@@ -34,25 +34,32 @@ async def menu(chat: int):
 async def reverse_budget_about(callback: types.CallbackQuery):
     LogCLassAll().debug("Press about revers budget")
     await callback.answer()
-    await callback.message.answer(Read.read_txt('text/reverse_budget.txt'))
+    await callback.message.delete()
+    await callback.message.answer(Read.read_txt('text/reverse_budget.txt'),
+                                  reply_markup=back_menu())
     
 @RouterStore.my_router.callback_query(CallbackDataFilter("financial_diary_about"))
 async def financial_diary_about(callback: types.CallbackQuery):
     LogCLassAll().debug("Press about financial_diary_about budget")
     await callback.answer()
-    await callback.message.answer(Read.read_txt('text/financial_diary.txt'))
+    await callback.message.delete()
+    await callback.message.answer(Read.read_txt('text/financial_diary.txt'),
+                                reply_markup=back_menu())
     
 @RouterStore.my_router.callback_query(CallbackDataFilter("financial_diary"))
 async def financial_diary(callback: types.CallbackQuery):
     LogCLassAll().debug("Press financial diary")
     await callback.answer()
+    await callback.message.delete()
     await callback.message.answer("🙌🏻*Приношу свои извенеения*\n\n"
                                 "🥺К сожелению данная функция находиться в разработке\n\n"
                                 "🫡Я уже тружуусь что бы все исправить!",
-                                parse_mode="Markdown")
+                                parse_mode="Markdown",
+                                reply_markup=back_menu())
     
 @RouterStore.my_router.callback_query(CallbackDataFilter("back_menu"))
 async def back_menu_revers(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: back_menu")
     await callback.answer()
+    await callback.message.delete()
     await menu(callback.from_user.id)

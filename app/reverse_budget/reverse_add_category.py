@@ -6,7 +6,7 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 from db.add import AddDB
 from db.search import SearchDB
-from app.inline_button import app_menu_revers
+from app.inline_button import app_menu_revers, back_menu
 
 
 class Add_Finance(StatesGroup):
@@ -17,8 +17,10 @@ class Add_Finance(StatesGroup):
 async def add_category(callback: types.CallbackQuery, state: FSMContext):
     LogCLassAll().debug("Press button: add_category")
     await callback.answer()
+    await callback.message.delete()
     await state.set_state(Add_Finance.waiting_category)
-    await callback.message.answer("👉 Введите 📂 название категории расходов:")
+    await callback.message.answer("👉 Введите 📂 название категории расходов:",
+                                  reply_markup=back_menu())
     
 
 @RouterStore.my_router.message(Add_Finance.waiting_category)

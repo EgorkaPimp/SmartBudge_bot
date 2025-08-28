@@ -15,11 +15,12 @@ class Add_Finance(StatesGroup):
 @RouterStore.my_router.callback_query(CallbackDataFilter("change_category"))
 async def change_category(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: change_category")
+    await callback.message.delete()
     await callback.answer()
     image = types.FSInputFile('images/logo.png')
     await callback.message.answer_photo(photo=image,
                                         caption='🗂️✨ «Выберите кнопку, чтобы навести порядок в своих запасах»\n\n'
-                                        'Вы можете изменить название и сумму выбранной категории',
+                                        'Вы можете изменить название и сумму выбранной категори иили удалить категорию.\n',
                                         reply_markup=revers_db_setting())
     
     
@@ -27,6 +28,7 @@ async def change_category(callback: types.CallbackQuery):
 async def add_spending_choice_category(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: rename_category")
     await callback.answer()
+    await callback.message.delete()
     if await SearchDB().search_user_in_reverse(callback.from_user.id):
         categories_map = await categories(callback.from_user.id, 'rename_category')
         await callback.message.answer('Выбери категорию',
@@ -68,6 +70,7 @@ async def update_name_category(message: types.Message, state: FSMContext):
 async def change_sum(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: change_sum")
     await callback.answer()
+    await callback.message.delete()
     if await SearchDB().search_user_in_reverse(callback.from_user.id):
         categories_map = await categories(callback.from_user.id, 'change_sum')
         await callback.message.answer('Выбери категорию',
