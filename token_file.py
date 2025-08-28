@@ -6,6 +6,6 @@ def read_file():
         path_to_token = '/home/egor/token/test.txt'
         token = Read.read_txt(path_to_token)
     else:
-        path_to_token = '/home/token/budget_token.txt'
+        path_to_token = '/root/my_bot/token/budget_token.txt'
         token = Read.read_txt(path_to_token)[:-1]
     return token
