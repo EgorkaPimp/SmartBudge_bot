@@ -8,6 +8,7 @@ from app.inline_button import confirmation_deletion
 async def delete_account(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: delete_account")
     await callback.answer()
+    await callback.message.delete()
     await callback.message.answer(Read.read_txt('text/delete_account.txt'),
                                   message_effect_id="5046589136895476101",
                                   reply_markup=confirmation_deletion())
