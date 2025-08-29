@@ -4,6 +4,17 @@ from BaseClass.db_class import InitDB
 class CreateDB(InitDB):
     def __init__(self):
         super().__init__()
+        
+        self.cursor.execute("PRAGMA foreign_keys = ON;")
+        
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS type_budget (
+                user_id INTEGER PRIMARY KEY,
+                reverse_budget INTEGER,
+                financial_diary INTEGER 
+            )
+        ''')
+        
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS scheduler_default (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,28 +28,19 @@ class CreateDB(InitDB):
         
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS plan (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER,
                 category TEXT,
-                sum_money INTEGER 
+                sum_money INTEGER,
+                FOREIGN KEY (user_id) REFERENCES type_budget(user_id) ON DELETE CASCADE
             )
         ''')
         
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS reverse_budget (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER,
                 category TEXT,
-                sum_money INTEGER 
-            )
-        ''')
-        
-        self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS type_budget (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER,
-                reverse_budget INTEGER,
-                financial_diary INTEGER 
+                sum_money INTEGER,
+                FOREIGN KEY (user_id) REFERENCES type_budget(user_id) ON DELETE CASCADE
             )
         ''')
         self.conn.commit()

@@ -13,4 +13,9 @@ class DeleteDB(InitDB):
                             (user_id, category.lower()))
         self.conn.commit()
         
+    async def delete_user(self, user_id: int):
+        LogCLassAll().debug(f'Delete user: {user_id}')
+        self.cursor.execute(f"DELETE FROM type_budget WHERE user_id = {user_id}")
+        self.conn.commit()
+        
         

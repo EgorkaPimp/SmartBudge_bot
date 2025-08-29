@@ -146,9 +146,9 @@ def confirmation_deletion():
     inline_kb_list = [
         [
             InlineKeyboardButton(text="Да",
-                            callback_data='back_setting'),
+                            callback_data='yes_delete'),
             InlineKeyboardButton(text="Нет",
-                            callback_data='back_setting')
+                            callback_data='no_delete')
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

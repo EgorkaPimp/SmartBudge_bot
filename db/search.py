@@ -27,7 +27,7 @@ class SearchDB(InitDB):
         self.cursor.execute("SELECT * FROM type_budget WHERE user_id = ?",
                        (user_id,))
         rows = self.cursor.fetchall()
-        result_list = [{"reverse_budget": row[2], "financial_diary": row[3]} for row in rows]
+        result_list = [{"reverse_budget": row[1], "financial_diary": row[2]} for row in rows]
         LogCLassAll().debug(f"Search type list {result_list[0]}")
         return result_list[0]
     
@@ -37,7 +37,7 @@ class SearchDB(InitDB):
                             (user_id,))
         tables = {}
         for i in self.cursor.fetchall():
-            tables[i[2]] = i[3]
+            tables[i[1]] = i[2]
         LogCLassAll().debug(f"Search category {tables}")
         return tables
     
