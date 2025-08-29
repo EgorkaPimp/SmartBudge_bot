@@ -3,7 +3,6 @@ from BaseClass.log_class import LogCLassAll
 from BaseClass.read_class import Read
 from aiogram import types
 from app.inline_button import revers_setting, back_setting
-from db.delete import DeleteDB
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("settings"))
 async def settings(callback: types.CallbackQuery):
@@ -56,16 +55,5 @@ async def delete_account_about(callback: types.CallbackQuery):
 async def back_setting_callback(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: back_setting")
     await settings(callback)
-
-@RouterStore.my_router.callback_query(CallbackDataFilter("yes_delete"))
-async def yes_delete(callback: types.CallbackQuery):
-    LogCLassAll().debug("Press button: yes_delete")
-    await DeleteDB().delete_user(callback.from_user.id)
-    await callback.answer()
-    await callback.message.delete()
-    image = types.FSInputFile('images/logo.png')
-    await callback.message.answer_photo(photo=image,
-                                        caption='Мне очень жадь что ты больше не считаешь свои расходы! \n'
-                                        'Буду рад вмдеть тебя снова')
 
     
