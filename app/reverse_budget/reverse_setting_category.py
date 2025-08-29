@@ -5,8 +5,9 @@ from db.search import SearchDB
 from aiogram import types, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from app.inline_button import revers_db_setting, categories, app_menu_revers
+from app.inline_button import revers_db_setting, categories, app_menu_revers, back_revers_setting_menu
 from db.update import UpdateDB
+from db.delete import DeleteDB
 
 class Add_Finance(StatesGroup):
     waiting_change_category = State()
@@ -35,7 +36,8 @@ async def add_spending_choice_category(callback: types.CallbackQuery):
                                     reply_markup=categories_map)
     else:
         await callback.message.answer("❌У вас пока нет ни одной категории 🗂️ \n"
-                                      "➡️ Добавьте первую, чтобы начать!")
+                                      "➡️ Добавьте первую, чтобы начать!",
+                                      reply_markup=back_revers_setting_menu())
         
 @RouterStore.my_router.callback_query(F.data.startswith("rename_category_"))
 async def write_new_name_category(callback: types.CallbackQuery, state: FSMContext):
@@ -77,7 +79,8 @@ async def change_sum(callback: types.CallbackQuery):
                                     reply_markup=categories_map)
     else:
         await callback.message.answer("❌У вас пока нет ни одной категории 🗂️ \n"
-                                      "➡️ Добавьте первую, чтобы начать!")
+                                      "➡️ Добавьте первую, чтобы начать!",
+                                      reply_markup=back_revers_setting_menu())
         
 @RouterStore.my_router.callback_query(F.data.startswith("change_sum_"))
 async def write_new_sum(callback: types.CallbackQuery, state: FSMContext):
@@ -107,3 +110,35 @@ async def update_sum_category(message: types.Message, state: FSMContext):
             new_sum += '\nпоменяйте , на .'
         await message.answer(f"🔢 Хм… тут должно быть число, а не заклинание 😅\n"
                              f"Вы ввели: {new_sum}")
+        
+@RouterStore.my_router.callback_query(CallbackDataFilter("del_category"))
+async def del_category(callback: types.CallbackQuery):
+    LogCLassAll().debug("Press button: del_category")
+    await callback.answer()
+    await callback.message.delete()
+    if await SearchDB().search_user_in_reverse(callback.from_user.id):
+        categories_map = await categories(callback.from_user.id, 'del_category')
+        await callback.message.answer('Выбери категорию',
+                                    reply_markup=categories_map)
+    else:
+        await callback.message.answer("❌У вас пока нет ни одной категории 🗂️ \n"
+                                      "➡️ Добавьте первую, чтобы начать!",
+                                      reply_markup=back_revers_setting_menu())
+        
+@RouterStore.my_router.callback_query(F.data.startswith("del_category_"))
+async def delete(callback: types.CallbackQuery, state: FSMContext):
+    category = callback.data.split("_")[-1]
+    LogCLassAll().debug(f"Choice sum category change: {category}")
+    await callback.answer()
+    await callback.message.delete()
+    await DeleteDB().delete_category(callback.from_user.id, category)
+    image = types.FSInputFile('images/logo.png')
+    await callback.message.answer_photo(photo=image,
+                                    caption=f'💎 Готово! Категории "{category}" больше не существует \n',
+                                    reply_markup=app_menu_revers())
+    
+@RouterStore.my_router.callback_query(F.data.startswith("back_revers_setting"))
+async def back_revers_setting(callback: types.CallbackQuery):
+    LogCLassAll().debug("Press button: back_revers_setting")
+    await change_category(callback)
+    

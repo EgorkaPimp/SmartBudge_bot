@@ -82,7 +82,7 @@ def revers_db_setting():
             InlineKeyboardButton(text="🎲💎 Сумма",
                               callback_data='change_sum'),
             InlineKeyboardButton(text="🗂️💀 Удалить",
-                              callback_data='change_sum')
+                              callback_data='del_category')
         ],
         [
             InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
@@ -158,6 +158,15 @@ def back_start():
         [
             InlineKeyboardButton(text="Вернуться",
                             callback_data='back_start')
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def back_revers_setting_menu():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="Вернуться",
+                            callback_data='back_revers_setting')
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
