@@ -33,3 +33,12 @@ class AddDB(InitDB):
         else:
             LogCLassAll().error("Wrong type")   
         self.conn.commit()
+    
+    def add_user_scheduler(self, user_id: int):
+        LogCLassAll().info("Start add user")
+        self.cursor.execute(
+            "INSERT INTO scheduler_user (user_id, day, hour, minute, state) "
+            f"SELECT {user_id}, day, hour, minute, 0 "
+            "FROM scheduler_default"
+        )
+        self.conn.commit()

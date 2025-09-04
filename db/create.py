@@ -43,6 +43,17 @@ class CreateDB(InitDB):
                 FOREIGN KEY (user_id) REFERENCES type_budget(user_id) ON DELETE CASCADE
             )
         ''')
+        
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS scheduler_user (
+                user_id INTEGER,
+                day TEXT INTEGER,
+                hour INTEGER,
+                minute INTEGER,
+                state INTEGER,
+                FOREIGN KEY (user_id) REFERENCES type_budget(user_id) ON DELETE CASCADE
+            )
+        ''')
         self.conn.commit()
         LogCLassAll().info("DataBase correct started")
     

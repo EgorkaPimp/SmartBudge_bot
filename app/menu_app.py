@@ -12,6 +12,7 @@ async def pres_menu(callback: types.CallbackQuery):
     await callback.answer()
     await callback.message.delete()
     await menu(callback.from_user.id)
+    
 async def menu(chat: int):
     LogCLassAll().debug("function 'menu' started correct")
     image = types.FSInputFile('images/logo.png')

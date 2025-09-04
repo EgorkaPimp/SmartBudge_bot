@@ -2,6 +2,8 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from BaseClass.log_class import LogCLassAll
 from db.search import SearchDB
+from aiogram import types
+from BaseClass.start_class import InstanceBot
 
 class SchedulerStart:
     def __init__(self):
@@ -21,16 +23,25 @@ class SchedulerStartBot(SchedulerStart):
         self.scheduler.start()
         
         
-# class SchedulerTest(SchedulerStart):
+# class SchedulerStartBot(SchedulerStart):
 #     def __init__(self):
 #         super().__init__()
 #         db = SearchDB()
 #         self.list_default_scheduler = db.search_default_scheduler()
 #         self.scheduler.add_job(test_scheduler, "interval",
-#                                seconds=self.list_default_scheduler["minute"])
+#                                seconds=10)
 #         self.scheduler.start()
 #         LogCLassAll().info("Start scheduler test")
         
         
-def test_scheduler():
+async def test_scheduler():
     LogCLassAll().debug('Test scheduler passed')
+    db = SearchDB()
+    list_user = db.search_user_all()
+    for i in list_user:
+        await scheduler_message_day(i[0])
+        
+async def scheduler_message_day(chat: int):
+    await InstanceBot.bot.send_message(chat_id=chat,
+                                    text='Хочу просто напомнить о себе')
+    

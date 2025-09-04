@@ -14,6 +14,7 @@ async def reverse_budget(callback: types.CallbackQuery):
     image = types.FSInputFile('images/logo.png')
     if not SearchDB().search_user(user_id):
         AddDB().add_user_type_budget(user_id, "reverse")
+        AddDB().add_user_scheduler(user_id)
     type_budget = SearchDB().search_type_budget(user_id)
     if type_budget["reverse_budget"] == 1:
         await callback.message.answer_photo(photo=image,

@@ -13,7 +13,14 @@ class Read:
 
     async def checking_number(value):
         try:
-            value_str = str(value).lstrip('-').replace('.', '', 1)
-            return value_str.isdigit()
-        except all:
+            if ',' in value:
+                return False
+
+            if any(ch.isalpha() for ch in value):
+                return False
+
+            float(value)
+            return True
+
+        except ValueError:
             return False

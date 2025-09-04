@@ -46,6 +46,7 @@ async def del_cat_inc(message: types.Message, state: FSMContext):
     image = types.FSInputFile('images/logo.png')
     if await Read.checking_number(spending):
         new_sum = old_sum_db - float(spending)
+        new_sum = round(new_sum, 2)
         await UpdateDB().update_sum_reverse_budget(user_id, category, new_sum)
         await message.answer_photo(photo=image,
                                    caption=f'💎 Готово! Новый остаток {new_sum} '

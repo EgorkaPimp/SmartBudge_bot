@@ -1,5 +1,4 @@
 import sqlite3
-from BaseClass.log_class import LogCLassAll
 
 class InitDB:
     def __init__(self):

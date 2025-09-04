@@ -40,10 +40,10 @@ async def add_to_db(message: types.Message, state: FSMContext):
     data = await state.get_data()
     user_id = message.from_user.id
     category = data.get("category")
-    sum_money = int(message.text)
     image = types.FSInputFile('images/logo.png')
     test_double = await SearchDB().search_category_double(user_id, category)
-    if await Read.checking_number(sum_money):
+    if await Read.checking_number(message.text):
+        sum_money = round(float(message.text), 2)
         if test_double:
             await message.answer_photo(photo=image,
                             caption=f'*❌ Категория 📂{category} уже существует*',
@@ -60,8 +60,13 @@ async def add_to_db(message: types.Message, state: FSMContext):
                                     parse_mode='Markdown',
                                     reply_markup=app_menu_revers())
     else:
-        if ',' in sum_money:
-            sum_money += '\nпоменяйте , на .'
-        await message.answer(f"🔢 Хм… тут должно быть число, а не заклинание 😅\n"
-                             f"Вы ввели: {sum_money}")
+        if any(ch.isalpha() for ch in message.text):
+             await message.answer(f"🔢 Хм… тут должно быть число, а не заклинание 😅\n"
+                                f"Вы ввели: {message.text}\n"
+                                "Введите число повторно")
+        if ',' in message.text:
+            await message.answer(f"🔢 Хм… тут должно быть число, а не заклинание 😅\n"
+                                    f"Вы ввели: {message.text} \n"
+                                    "Возможно надо поменять , на .\n"
+                                    "Введите число повторно")
     

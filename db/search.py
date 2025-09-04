@@ -23,6 +23,11 @@ class SearchDB(InitDB):
             LogCLassAll().debug(f"New user {user_id}")
             return False
         
+    def search_user_all(self):
+        self.cursor.execute("SELECT user_id "
+                            "FROM type_budget")
+        return self.cursor.fetchall()
+        
     def search_type_budget(self, user_id: int):
         self.cursor.execute("SELECT * FROM type_budget WHERE user_id = ?",
                        (user_id,))
