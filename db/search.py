@@ -82,3 +82,19 @@ class SearchDB(InitDB):
                             (user_id, category.lower(),))
         sum_db = self.cursor.fetchone()
         return sum_db[0]
+    
+    async def new_search_category_for_table(self, user_id: int):
+        self.cursor.execute("""
+            SELECT 
+                r.category   AS Категория,
+                r.sum_money  AS Сумма,
+                p.sum_money  AS План,
+                (p.sum_money - r.sum_money) AS Осталось
+            FROM reverse_budget r
+            JOIN plan p 
+                ON r.category = p.category 
+               AND r.user_id = p.user_id
+            WHERE r.user_id = ?;
+        """, (user_id,))
+        
+        return self.cursor.fetchall()
