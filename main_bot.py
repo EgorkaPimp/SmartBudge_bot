@@ -3,13 +3,11 @@ from datetime import datetime
 from BaseClass.log_class import LogCLassAll
 from BaseClass.start_class import StartBot
 from BaseClass.scheduler_class import SchedulerStartBot
-from db.create import CreateDB
 
 from app import *  # noqa: F403
     
 async def main():
     LogCLassAll().info("Start logging")
-    CreateDB()
     bot = StartBot()
     SchedulerStartBot()
     await bot.run()

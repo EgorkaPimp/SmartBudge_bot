@@ -1,11 +1,3 @@
-from app import about_app  # noqa: F401
-from app import handlers_base # noqa: F401
-from app import menu_app # noqa: F401
-from app import delete_account # noqa: F401
-from app import joint_expenses # noqa: F401
-from app.reverse_budget import reverse_budget_app # noqa: F401
-from app.reverse_budget import reverse_add_category # noqa: F401
-from app.reverse_budget import reverse_show_table # noqa: F401
-from app.reverse_budget import reverse_add_spending # noqa: F401
-from app.reverse_budget import reverse_setting_category # noqa: F401
-from app.reverse_budget import reverse_setting_button # noqa: F401
+
+
+
