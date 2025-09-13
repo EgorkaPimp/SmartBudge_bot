@@ -18,7 +18,7 @@ class User(Base):
                                     cascade="all, delete-orphan")
     shares_as_slave = relationship("Share", back_populates="slave", foreign_keys="Share.slave_id", 
                                    cascade="all, delete-orphan")
-    reminders = relationship("StatusScheduler", back_populates="user", cascade="all, delete-orphan")
+    reminders = relationship("Reminders", back_populates="user", cascade="all, delete-orphan")
 
 class PlanSpending(Base):
     __tablename__ = "plan_spending"
@@ -62,7 +62,7 @@ class Expense(Base):
 class Share(Base):
     __tablename__ = "shares"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     master_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     slave_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
 
@@ -72,8 +72,8 @@ class Share(Base):
 class Reminders(Base):
     __tablename__ = "reminders"
     
-    id = Column(Integer, autoincrement=True)
+    id = Column(Integer, autoincrement=True, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
-    state = Column(Integer)
+    status = Column(Integer)
     
     user = relationship("User", back_populates="reminders")

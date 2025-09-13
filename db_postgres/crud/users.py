@@ -2,13 +2,19 @@ from db_postgres.db import AsyncDatabaseSession
 from db_postgres.models import User
 from sqlalchemy.future import select
 
-async def add_user(user_id: int, username: str, role: int = 0):
+async def add_user(user_id: int, username: str, role: int = 1):
     async with AsyncDatabaseSession() as db:
-        user = User(id=user_id, username=username, role=role)
-        db.add(user)
-        await db.commit()
-        await db.refresh(user)
-        return user
+        result = await db.execute(
+            select(User).where(User.id == user_id)
+        )
+        record = result.scalars().first()
+
+        if not record:
+            user = User(id=user_id, username=username, role=role)
+            db.add(user)
+            await db.commit()
+            await db.refresh(user)
+            return user
 
 
 async def get_user(user_id: int):
