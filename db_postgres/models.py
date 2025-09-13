@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
+from db_postgres.db import Base
 
-Base = declarative_base()
 
 class User(Base):
     __tablename__ = "users"
@@ -11,17 +11,20 @@ class User(Base):
     role = Column(Integer)
 
     # связи
-    statuses = relationship("StatusScheduler", back_populates="user")
-    plans = relationship("PlanSpending", back_populates="user")
-    expenses = relationship("Expense", back_populates="user")
-    shares_as_master = relationship("Share", back_populates="master", foreign_keys="Share.master_id")
-    shares_as_slave = relationship("Share", back_populates="slave", foreign_keys="Share.slave_id")
+    statuses = relationship("StatusScheduler", back_populates="user", cascade="all, delete-orphan")
+    plans = relationship("PlanSpending", back_populates="user", cascade="all, delete-orphan")
+    expenses = relationship("Expense", back_populates="user", cascade="all, delete-orphan")
+    shares_as_master = relationship("Share", back_populates="master", foreign_keys="Share.master_id", 
+                                    cascade="all, delete-orphan")
+    shares_as_slave = relationship("Share", back_populates="slave", foreign_keys="Share.slave_id", 
+                                   cascade="all, delete-orphan")
+    reminders = relationship("StatusScheduler", back_populates="user", cascade="all, delete-orphan")
 
 class PlanSpending(Base):
     __tablename__ = "plan_spending"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     category = Column(String, nullable=False)
     amount_money = Column(Integer, nullable=False)
 
@@ -32,7 +35,7 @@ class StatusScheduler(Base):
     __tablename__ = "status_scheduler"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     status = Column(Integer)
 
     user = relationship("User", back_populates="statuses")
@@ -49,7 +52,7 @@ class Expense(Base):
     __tablename__ = "expenses"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     category = Column(String, nullable=False)
     amount_expenses = Column(Integer, nullable=False)
 
@@ -60,8 +63,17 @@ class Share(Base):
     __tablename__ = "shares"
 
     id = Column(Integer, primary_key=True)
-    master_id = Column(Integer, ForeignKey("users.id"))
-    slave_id = Column(Integer, ForeignKey("users.id"))
+    master_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
+    slave_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
 
     master = relationship("User", back_populates="shares_as_master", foreign_keys=[master_id])
     slave = relationship("User", back_populates="shares_as_slave", foreign_keys=[slave_id])
+    
+class Reminders(Base):
+    __tablename__ = "reminders"
+    
+    id = Column(Integer, autoincrement=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
+    state = Column(Integer)
+    
+    user = relationship("User", back_populates="reminders")
