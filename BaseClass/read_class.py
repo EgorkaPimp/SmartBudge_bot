@@ -1,3 +1,28 @@
+from pathlib import Path
+from aiogram.types import FSInputFile  # <--- важно
+
+class Images:
+    _base_path = Path("images")
+    _cache = {}
+
+    @classmethod
+    def get(cls, filename: str) -> FSInputFile:
+        if filename not in cls._cache:
+            path = cls._base_path / filename
+            cls._cache[filename] = FSInputFile(path=str(path))  # корректный способ
+        return cls._cache[filename]
+
+    @classmethod
+    def welcome_image(cls) -> FSInputFile:
+        return cls.get("welcome.jpg")
+
+    @classmethod
+    def logo(cls) -> FSInputFile:
+        return cls.get("logo.png")
+
+    @classmethod
+    def banner(cls) -> FSInputFile:
+        return cls.get("banner.jpg")
 
 class Read:
     def read_txt(path: str):
@@ -24,3 +49,6 @@ class Read:
 
         except ValueError:
             return False
+        
+class Text:
+    welcome_text = Read.read_txt('text/welcome.txt')

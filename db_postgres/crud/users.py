@@ -15,6 +15,9 @@ async def add_user(user_id: int, username: str, role: int = 1):
             await db.commit()
             await db.refresh(user)
             return user
+        
+        else:
+            return None
 
 
 async def get_user(user_id: int):
