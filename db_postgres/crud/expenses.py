@@ -2,7 +2,7 @@ from sqlalchemy.future import select
 from db_postgres.db import AsyncDatabaseSession
 from db_postgres.models import Expense
 
-async def add_expense(user_id: int, category: str, amount_expenses: int):
+async def add_expense(user_id: int, category: str, amount_expenses: float):
     async with AsyncDatabaseSession() as db:
         exp = Expense(user_id=user_id, category=category, amount_expenses=amount_expenses)
         db.add(exp)
@@ -25,7 +25,7 @@ async def delete_expense(user_id: int, category: str):
         return exp
     
 async def update_expenses(user_id: int, category: str, 
-                          new_category: str = None, amount_expenses: int = None):
+                          new_category: str = None, amount_expenses: float = None):
     async with AsyncDatabaseSession() as db:
         result = await db.execute(select(Expense).where((Expense.user_id == user_id) &
                                                         (Expense.category == category)))
@@ -45,7 +45,7 @@ async def update_expenses(user_id: int, category: str,
         await db.refresh(expense)
         return expense
     
-async def add_to_expenses(user_id: int, category: str, amount_to_add: int):
+async def add_to_expenses(user_id: int, category: str, amount_to_add: float):
     async with AsyncDatabaseSession() as db:
         # Находим запись
         result = await db.execute(
@@ -58,7 +58,7 @@ async def add_to_expenses(user_id: int, category: str, amount_to_add: int):
             return None  # запись не найдена
 
         # Прибавляем к текущему значению
-        expense.amount_expenses += amount_to_add
+        expense.amount_expenses -= amount_to_add
 
         await db.commit()
         await db.refresh(expense)

@@ -35,3 +35,12 @@ def app_menu():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def back_menu():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="🔙 Вернться в меню",
+                              callback_data='back_menu')
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

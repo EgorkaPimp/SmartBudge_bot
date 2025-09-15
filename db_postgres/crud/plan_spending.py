@@ -2,7 +2,7 @@ from sqlalchemy.future import select
 from db_postgres.db import AsyncDatabaseSession
 from db_postgres.models import PlanSpending
 
-async def add_plan_spending(user_id: int, category: str, amount_money: int):
+async def add_plan_spending(user_id: int, category: str, amount_money: float):
     async with AsyncDatabaseSession() as db:
         amount = PlanSpending(user_id=user_id, category=category, amount_money=amount_money)
         db.add(amount)
