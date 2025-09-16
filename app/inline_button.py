@@ -36,11 +36,35 @@ def app_menu():
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
-def back_menu():
+def setting():
     inline_kb_list = [
         [
-            InlineKeyboardButton(text="🔙 Вернться в меню",
-                              callback_data='back_menu')
+            InlineKeyboardButton(text="🔄 Обновить период",
+                              callback_data='update_period'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='update_period_about')
+        ],
+        [
+            InlineKeyboardButton(text="🤝 Совместные траты",
+                              callback_data='shared_expenses'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='shared_expenses_about')
+        ],
+        [
+            InlineKeyboardButton(text="🔔 Оповещение",
+                              callback_data='notification'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='notification_about')
+        ],
+        [
+            InlineKeyboardButton(text="🗑️ Удалиться",
+                              callback_data='delete_account'),
+            InlineKeyboardButton(text="ℹ️ Описание",
+                              callback_data='delete_account_about')
+        ],
+        [
+            InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
+                            callback_data='press_menu'),
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
