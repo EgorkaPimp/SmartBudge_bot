@@ -1,9 +1,8 @@
 from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
-from aiogram.fsm.context import FSMContext
 from aiogram import types
 from app.inline_back import back_setting
-from BaseClass.read_class import Read, Images
+from BaseClass.read_class import Read
 
 async def about(callback: types.CallbackQuery, parameter: str):
     LogCLassAll().debug(f"Started about function parameter: {parameter}")
