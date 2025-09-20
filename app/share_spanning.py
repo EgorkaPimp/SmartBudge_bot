@@ -4,7 +4,6 @@ from aiogram.fsm.context import FSMContext
 from aiogram import types
 from app.inline_back import back_setting
 from BaseClass.read_class import Images, Generate
-from db_postgres.crud.users import delete_user
 from db_postgres.crud.shares import add_share_status_master, status_share_search
 
 image_logo = Images.logo()

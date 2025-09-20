@@ -56,6 +56,7 @@ async def del_cat_inc(message: types.Message, state: FSMContext):
         new_db = await add_to_expenses(user_id=user_id,
                                     category=category,
                                     amount_to_add=float(spending))
+        print(new_db)
         await message.answer_photo(photo=image_logo,
                                     caption=f'💎 Готово! Новый остаток {new_db.amount_expenses} '
                                     f'уже в категории {category}. ✨',
