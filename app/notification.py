@@ -2,7 +2,7 @@ from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
 from aiogram import types
 from app.inline_button import notification_status
-from BaseClass.read_class import Images, Read
+from BaseClass.read_class import Images
 from db_postgres.crud.status_scheduler import search_status, update_status_scheduler
 
 image_logo = Images.logo()

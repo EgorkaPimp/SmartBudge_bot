@@ -9,6 +9,7 @@ from app.inline_back import back_menu
 from BaseClass.read_class import Images
 from db_postgres.crud.expenses import add_expense, category_exists
 from db_postgres.crud.plan_spending import add_plan_spending
+from db_postgres.crud.shares import status_share_search
 
 image_logo = Images.logo()
 
@@ -45,7 +46,11 @@ async def add_sum_category(message: types.Message, state: FSMContext):
 async def add_to_db(message: types.Message, state: FSMContext):
     LogCLassAll().debug(f"Write sum: {message.text} user {message.from_user.id}")
     data = await state.get_data()
-    user_id = message.from_user.id
+    master = await status_share_search(message.from_user.id)
+    if master:
+        user_id = master.master_id
+    else:
+        user_id = message.from_user.id
     category = data.get("category")
     if await Read.checking_number(message.text):
         sum_money = round(float(message.text), 2)
