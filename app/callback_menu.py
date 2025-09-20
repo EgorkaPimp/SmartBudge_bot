@@ -1,8 +1,7 @@
 from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
-from aiogram.types import InputMediaPhoto, FSInputFile
+from aiogram.types import InputMediaPhoto
 from aiogram import types
-from BaseClass.read_class import Read
 from app.inline_button import app_menu
 from BaseClass.read_class import Images
 

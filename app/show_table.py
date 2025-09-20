@@ -35,13 +35,13 @@ async def create_table(map_plan: dict):
         sum_remaining += cat['remaining']
         sum_plan += cat['plan']
         
-        row = f"""| {(cat['category'].ljust(13)).capitalize()} | {str(cat['remaining']).rjust(4)}   {str(cat['plan']).rjust(8)}   {str(cat['spent']).rjust(8)}
+        row = f"""| {(cat['category'].ljust(13)).capitalize()} | {str(cat['spent']).rjust(4)}   {str(cat['plan']).rjust(8)}   {str(cat['remaining']).rjust(8)}
 |---------------|----------|----------|----------|"""
         table_rows.append(row)
     
     table_header = "| Категория     | Осталось | Заложено | Потрачено|\n|---------------|----------|----------|----------|"
     
-    table_end = f"|------------------------------------------------|\n|  Итог:       | {sum_remaining}    | {sum_plan}   | {sum_exp}   |"
+    table_end = f"|------------------------------------------------|\n|  Итог:       | {sum_exp}    | {sum_plan}   | {sum_remaining}   |"
    
     full_table = f"```\n{table_header}\n" + "\n".join(table_rows) + f"\n{table_end}```"
     return full_table

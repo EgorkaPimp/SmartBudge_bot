@@ -133,8 +133,8 @@ async def categories(user_id: int, interceptor: str):
     inline_kb_list = []
     for cat in categories_db:
         format_key = []
-        format_key.append(InlineKeyboardButton(text=f"✨{cat.category.capitalize()}",
-                                               callback_data=f'{interceptor}_{cat.category.capitalize()}'))
+        format_key.append(InlineKeyboardButton(text=f"✨{cat.category}",
+                                               callback_data=f'{interceptor}_{cat.category}'))
         inline_kb_list.append(format_key)
     back = [InlineKeyboardButton(text="🔙 Вернуться",
                                 callback_data='press_menu')]

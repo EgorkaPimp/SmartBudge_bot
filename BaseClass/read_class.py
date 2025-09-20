@@ -1,6 +1,12 @@
 from pathlib import Path
 import base64
 from aiogram.types import FSInputFile  # <--- важно
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+LINK_BOT = os.getenv("LINK_BOT")
 
 class Images:
     _base_path = Path("images")
@@ -57,7 +63,7 @@ class Text:
 class Generate:
     async def generate_link(user_id: int) -> str:
         payload = base64.urlsafe_b64encode(str(user_id).encode()).decode()
-        return f"https://t.me/test_money_pimp_bot?start=share_{payload}"
+        return f"https://t.me/{LINK_BOT}?start=share_{payload}"
     
     async def encode_user_id(payload: str) -> int:
         padding = "=" * (-len(payload) % 4)
