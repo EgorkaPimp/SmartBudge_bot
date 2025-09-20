@@ -1,4 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from BaseClass.log_class import LogCLassAll
+from db_postgres.crud.shares import status_share_search
+from db_postgres.crud.expenses import get_expenses
 
 def app_start():
     inline_kb_list = [
@@ -107,3 +110,18 @@ def notification_status(status_notification: int, status_update: int):
         ],
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+async def categories(user_id: int, interceptor: str):
+    LogCLassAll().debug(f"Start search category user: {user_id}")
+    categories_db = await get_expenses(user_id=user_id)  
+    inline_kb_list = []
+    for cat in categories_db:
+        format_key = []
+        format_key.append(InlineKeyboardButton(text=f"✨{cat.category.capitalize()}",
+                                               callback_data=f'{interceptor}_{cat.category.capitalize()}'))
+        inline_kb_list.append(format_key)
+    back = [InlineKeyboardButton(text="🔙 Вернуться",
+                                callback_data='press_menu')]
+    inline_kb_list.append(back)
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+    

@@ -65,6 +65,7 @@ async def add_to_db(message: types.Message, state: FSMContext):
                         f'Запланированая сумма 💰= {sum_money}',
                         parse_mode='Markdown',
                         reply_markup=app_menu())
+        await state.clear()
     else:
         if any(ch.isalpha() for ch in message.text):
              await message.answer(f"🔢 Хм… тут должно быть число, а не заклинание 😅\n"

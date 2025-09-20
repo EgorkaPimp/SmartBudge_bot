@@ -5,3 +5,4 @@ from app import setting # noqa: F401
 from app import setting_about # noqa: F401
 from app import share_spanning # noqa: F401
 from app import notification # noqa: F401
+from app import add_spending # noqa: F401
