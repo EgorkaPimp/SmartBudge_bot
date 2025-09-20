@@ -71,6 +71,23 @@ def setting():
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
+def setting_category():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="🗂️✨ Название",
+                              callback_data='rename_category'),
+            InlineKeyboardButton(text="🎲💎 Сумма",
+                              callback_data='change_sum'),
+            InlineKeyboardButton(text="🗂️💀 Удалить",
+                              callback_data='del_category')
+        ],
+        [
+            InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
+                            callback_data='press_menu'),
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
 def confirmation_deletion():
     inline_kb_list = [
         [
@@ -123,4 +140,6 @@ async def categories(user_id: int, interceptor: str):
                                 callback_data='press_menu')]
     inline_kb_list.append(back)
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+
     
