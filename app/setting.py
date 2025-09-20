@@ -1,9 +1,21 @@
 from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
 from aiogram import types
-from BaseClass.read_class import Read
-from app.inline_button import confirmation_deletion
-from db.delete import DeleteDB
+from app.inline_button import setting, confirmation_deletion
+from BaseClass.read_class import Images, Read
+from db_postgres.crud.users import delete_user
+
+image_logo = Images.logo()
+
+@RouterStore.my_router.callback_query(CallbackDataFilter("settings"))
+async def settings(callback: types.CallbackQuery):
+    LogCLassAll().debug("Press button: settings")
+    await callback.message.edit_media(
+    media=types.InputMediaPhoto(media=image_logo, caption="Главное меню:"),
+    reply_markup=setting(),
+    )
+    
+"""----------------Delete acount from db---------------------"""
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("delete_account"))
 async def delete_account(callback: types.CallbackQuery):
@@ -17,10 +29,13 @@ async def delete_account(callback: types.CallbackQuery):
 @RouterStore.my_router.callback_query(CallbackDataFilter("yes_delete"))
 async def yes_delete(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: yes_delete")
-    await DeleteDB().delete_user(callback.from_user.id)
+    await delete_user(callback.from_user.id)
     await callback.answer()
     await callback.message.delete()
-    image = types.FSInputFile('images/logo.png')
-    await callback.message.answer_photo(photo=image,
+    await callback.message.answer_photo(photo=image_logo,
                                         caption='Мне очень жадь что ты больше не считаешь свои расходы! \n'
-                                        'Буду рад вмдеть тебя снова')
+                                        'Буду рад видеть тебя снова')
+    
+"""-----------------------------------------------------------"""
+    
+                                        

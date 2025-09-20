@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from db.search import SearchDB
 from BaseClass.log_class import LogCLassAll
+from db_postgres.crud.expenses import get_expenses
 
 def app_start():
     inline_kb_list = [
@@ -16,29 +16,8 @@ def app_start():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
-    
-def app_menu():
-    inline_kb_list = [
-        [
-            InlineKeyboardButton(text="💰 Обратный бюджет",
-                              callback_data='reverse_budget'),
-            InlineKeyboardButton(text="ℹ️ Описание",
-                              callback_data='reverse_budget_about')
-        ],
-        [
-            InlineKeyboardButton(text="📔 Финансовый дневник",
-                              callback_data='financial_diary'),
-            InlineKeyboardButton(text="ℹ️ Описание",
-                              callback_data='financial_diary_about')
-        ],
-        [
-            InlineKeyboardButton(text="⚙️ Настройки",
-                            callback_data='settings'),
-        ]
-    ]
-    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
-def app_menu_revers():
+def app_menu():
     inline_kb_list = [
         [
             InlineKeyboardButton(text="➕✨ Добавить категорию",
@@ -59,39 +38,7 @@ def app_menu_revers():
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
-
-async def categories(user_id: int, interceptor: str):
-    LogCLassAll().debug(f"Start search category user: {user_id}")
-    categories = await SearchDB().search_category_table(user_id)
-    inline_kb_list = []
-    for cat in categories:
-        format_key = []
-        format_key.append(InlineKeyboardButton(text=f"{cat[0].capitalize()}",
-                                               callback_data=f'{interceptor}_{cat[0].capitalize()}'))
-        inline_kb_list.append(format_key)
-    back = [InlineKeyboardButton(text="Вернуться",
-                                callback_data='back_menu')]
-    inline_kb_list.append(back)
-    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
-
-def revers_db_setting():
-    inline_kb_list = [
-        [
-            InlineKeyboardButton(text="🗂️✨ Название",
-                              callback_data='rename_category'),
-            InlineKeyboardButton(text="🎲💎 Сумма",
-                              callback_data='change_sum'),
-            InlineKeyboardButton(text="🗂️💀 Удалить",
-                              callback_data='del_category')
-        ],
-        [
-            InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
-                            callback_data='back_menu'),
-        ]
-    ]
-    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
-
-def revers_setting():
+def setting():
     inline_kb_list = [
         [
             InlineKeyboardButton(text="🔄 Обновить период",
@@ -119,25 +66,24 @@ def revers_setting():
         ],
         [
             InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
-                            callback_data='back_menu'),
+                            callback_data='press_menu'),
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
-def back_setting():
+def setting_category():
     inline_kb_list = [
         [
-            InlineKeyboardButton(text="🌀⚙️ Вернуться в настройки",
-                            callback_data='back_setting'),
-        ]
-    ]
-    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
-
-def back_menu():
-    inline_kb_list = [
+            InlineKeyboardButton(text="🗂️✨ Название",
+                              callback_data='rename_category'),
+            InlineKeyboardButton(text="🎲💎 Сумма",
+                              callback_data='change_sum'),
+            InlineKeyboardButton(text="🗂️💀 Удалить",
+                              callback_data='del_category')
+        ],
         [
-            InlineKeyboardButton(text="Вернуться",
-                            callback_data='back_menu'),
+            InlineKeyboardButton(text="🌀🏰 Вернуться в меню",
+                            callback_data='press_menu'),
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
@@ -148,25 +94,52 @@ def confirmation_deletion():
             InlineKeyboardButton(text="Да",
                             callback_data='yes_delete'),
             InlineKeyboardButton(text="Нет",
-                            callback_data='back_setting')
+                            callback_data='settings')
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
-def back_start():
+def notification_status(status_notification: int, status_update: int):
+    if status_notification == 0:
+        button_notification = "Включить еженедельнное оповещение"
+        notification_callback = "up_notification"
+    elif status_notification == 1:
+        button_notification = "Выключить еженедельнное оповещение"
+        notification_callback = "down_notification"
+    if status_update == 0:
+        button_update = "Включить ежемесячное оповещение"
+        update_callback = "up_update"
+    elif status_update == 1:
+        button_update = "Выключить ежемесячное оповещение"
+        update_callback = "down_update"
     inline_kb_list = [
         [
-            InlineKeyboardButton(text="Вернуться",
-                            callback_data='back_start')
-        ]
+            InlineKeyboardButton(text=button_notification,
+                            callback_data=notification_callback)],
+        [
+            InlineKeyboardButton(text=button_update,
+                            callback_data=update_callback)
+        ],
+        [
+            InlineKeyboardButton(text="🔙⚙️ Вернться в настройки",
+                            callback_data='settings')
+        ],
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
-def back_revers_setting_menu():
-    inline_kb_list = [
-        [
-            InlineKeyboardButton(text="Вернуться",
-                            callback_data='back_revers_setting')
-        ]
-    ]
+async def categories(user_id: int, interceptor: str):
+    LogCLassAll().debug(f"Start search category user: {user_id}")
+    categories_db = await get_expenses(user_id=user_id)  
+    inline_kb_list = []
+    for cat in categories_db:
+        format_key = []
+        format_key.append(InlineKeyboardButton(text=f"✨{cat.category.capitalize()}",
+                                               callback_data=f'{interceptor}_{cat.category.capitalize()}'))
+        inline_kb_list.append(format_key)
+    back = [InlineKeyboardButton(text="🔙 Вернуться",
+                                callback_data='press_menu')]
+    inline_kb_list.append(back)
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+
+    

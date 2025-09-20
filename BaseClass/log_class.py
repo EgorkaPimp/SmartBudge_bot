@@ -2,6 +2,7 @@ import logging
 
 class LogCLassAll:
     def __init__(self):
+        # --- основной logger бота ---
         self.logger = logging.getLogger("BotLogger")
         self.logger.setLevel(logging.DEBUG)
 
@@ -30,6 +31,18 @@ class LogCLassAll:
             fh_aiogram.setFormatter(formatter_aiogram)
 
             aiogram_logger.addHandler(fh_aiogram)
+
+        # --- logger SQLAlchemy ---
+        sa_logger = logging.getLogger("sqlalchemy.engine")
+        sa_logger.setLevel(logging.INFO)  # можно DEBUG, если нужны подробные запросы
+        if not sa_logger.handlers:
+            fh_sa = logging.FileHandler("log/sqlalchemy.log", mode="w", encoding="utf-8")
+            fh_sa.setLevel(logging.INFO)
+            formatter_sa = logging.Formatter(
+                '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+            )
+            fh_sa.setFormatter(formatter_sa)
+            sa_logger.addHandler(fh_sa)
         
     def warning(self, text: str):
         print(text)

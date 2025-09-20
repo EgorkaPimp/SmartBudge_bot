@@ -1,3 +1,29 @@
+from pathlib import Path
+import base64
+from aiogram.types import FSInputFile  # <--- важно
+
+class Images:
+    _base_path = Path("images")
+    _cache = {}
+
+    @classmethod
+    def get(cls, filename: str) -> FSInputFile:
+        if filename not in cls._cache:
+            path = cls._base_path / filename
+            cls._cache[filename] = FSInputFile(path=str(path))  # корректный способ
+        return cls._cache[filename]
+
+    @classmethod
+    def welcome_image(cls) -> FSInputFile:
+        return cls.get("welcome.jpg")
+
+    @classmethod
+    def logo(cls) -> FSInputFile:
+        return cls.get("logo.png")
+
+    @classmethod
+    def banner(cls) -> FSInputFile:
+        return cls.get("banner.jpg")
 
 class Read:
     def read_txt(path: str):
@@ -24,3 +50,17 @@ class Read:
 
         except ValueError:
             return False
+        
+class Text:
+    welcome_text = Read.read_txt('text/welcome.txt')
+    
+class Generate:
+    async def generate_link(user_id: int) -> str:
+        payload = base64.urlsafe_b64encode(str(user_id).encode()).decode()
+        return f"https://t.me/test_money_pimp_bot?start=share_{payload}"
+    
+    async def encode_user_id(payload: str) -> int:
+        padding = "=" * (-len(payload) % 4)
+
+        decoded = base64.urlsafe_b64decode(payload + padding).decode()
+        return int(decoded)

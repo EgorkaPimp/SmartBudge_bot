@@ -3,13 +3,15 @@ from datetime import datetime
 from BaseClass.log_class import LogCLassAll
 from BaseClass.start_class import StartBot
 from BaseClass.scheduler_class import SchedulerStartBot
-from db.create import CreateDB
+from db_postgres.db_base import init_models
+from db_postgres.crud.scheduler_default import add_scheduler_default
 
 from app import *  # noqa: F403
     
 async def main():
     LogCLassAll().info("Start logging")
-    CreateDB()
+    await init_models()
+    await add_scheduler_default()
     bot = StartBot()
     SchedulerStartBot()
     await bot.run()
