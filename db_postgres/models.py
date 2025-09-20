@@ -36,7 +36,8 @@ class StatusScheduler(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
-    status = Column(Integer)
+    status_notification = Column(Integer)
+    status_update = Column(Integer)
 
     user = relationship("User", back_populates="statuses")
     

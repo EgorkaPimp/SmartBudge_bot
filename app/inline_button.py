@@ -79,3 +79,31 @@ def confirmation_deletion():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def notification_status(status_notification: int, status_update: int):
+    if status_notification == 0:
+        button_notification = "Включить еженедельнное оповещение"
+        notification_callback = "up_notification"
+    elif status_notification == 1:
+        button_notification = "Выключить еженедельнное оповещение"
+        notification_callback = "down_notification"
+    if status_update == 0:
+        button_update = "Включить ежемесячное оповещение"
+        update_callback = "up_update"
+    elif status_update == 1:
+        button_update = "Выключить ежемесячное оповещение"
+        update_callback = "down_update"
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text=button_notification,
+                            callback_data=notification_callback)],
+        [
+            InlineKeyboardButton(text=button_update,
+                            callback_data=update_callback)
+        ],
+        [
+            InlineKeyboardButton(text="🔙⚙️ Вернться в настройки",
+                            callback_data='settings')
+        ],
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

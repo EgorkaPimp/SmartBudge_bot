@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 def back_setting():
     inline_kb_list = [
         [
-            InlineKeyboardButton(text="🔙 Вернться в меню",
+            InlineKeyboardButton(text="🔙⚙️ Вернться в настройки",
                               callback_data='settings')
         ]
     ]
@@ -12,7 +12,7 @@ def back_setting():
 def back_menu():
     inline_kb_list = [
         [
-            InlineKeyboardButton(text="🔙 Вернться в меню",
+            InlineKeyboardButton(text="🔙🏘 Вернться в меню",
                               callback_data='press_menu')
         ]
     ]
