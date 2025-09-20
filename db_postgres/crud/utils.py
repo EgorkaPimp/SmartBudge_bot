@@ -22,12 +22,12 @@ async def get_category_comparison(user_id: int):
         for cat in all_categories:
             exp_val = expenses.get(cat, 0)
             plan_val = plans.get(cat, 0)
-            difference = exp_val - plan_val
+            difference = plan_val - exp_val
             comparison.append({
                 "category": cat,
-                "amount_expenses": exp_val,
-                "amount_money": plan_val,
-                "difference": difference
+                "spent": exp_val,
+                "plan": plan_val,
+                "remaining": difference
             })
 
         return comparison

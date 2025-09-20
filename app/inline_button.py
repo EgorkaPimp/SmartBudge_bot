@@ -1,6 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from BaseClass.log_class import LogCLassAll
-from db_postgres.crud.shares import status_share_search
 from db_postgres.crud.expenses import get_expenses
 
 def app_start():
