@@ -40,3 +40,10 @@ async def master_slave(user_id: int):
         if master:
                 user_id = master.master_id
         return user_id
+    
+async def search_slave(user_id: int):
+        async with AsyncDatabaseSession() as db:
+            result = await db.execute(
+                select(Share).where((Share.master_id == user_id)))
+            expense = result.scalars().first()
+            return expense

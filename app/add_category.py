@@ -9,7 +9,7 @@ from app.inline_back import back_menu
 from BaseClass.read_class import Images
 from db_postgres.crud.expenses import add_expense, category_exists
 from db_postgres.crud.plan_spending import add_plan_spending
-from db_postgres.crud.shares import status_share_search, master_slave
+from db_postgres.crud.shares import master_slave
 
 image_logo = Images.add_category()
 

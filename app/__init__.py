@@ -8,3 +8,4 @@ from app import notification # noqa: F401
 from app import add_spending # noqa: F401
 from app import show_table # noqa: F401
 from app import setting_category # noqa: F401
+from app import update_period # noqa: F401

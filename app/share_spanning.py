@@ -1,15 +1,14 @@
 from BaseClass.start_class import RouterStore, CallbackDataFilter
 from BaseClass.log_class import LogCLassAll
-from aiogram.fsm.context import FSMContext
 from aiogram import types
 from app.inline_back import back_setting
 from BaseClass.read_class import Images, Generate
 from db_postgres.crud.shares import add_share_status_master, status_share_search
 
-image_logo = Images.logo()
+image_logo = Images.setting()
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("shared_expenses"))
-async def shared_expenses(callback: types.CallbackQuery, state: FSMContext):
+async def shared_expenses(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: shared_expenses")
     await callback.answer()
     if not await status_share_search(user_id=callback.from_user.id):
