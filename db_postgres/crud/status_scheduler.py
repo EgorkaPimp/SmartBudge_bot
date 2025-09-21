@@ -31,3 +31,18 @@ async def search_status(user_id: int):
         )
         record = result.scalars().first()
         return record
+    
+async def search_user(notification: bool = False, update: bool = False):
+    async with AsyncDatabaseSession() as db:
+        if notification is True:
+            result = await db.execute(
+                select(StatusScheduler).where(StatusScheduler.status_notification == 1)
+            )
+            record = result.scalars().all()
+            return record
+        elif update is True:
+            result = await db.execute(
+                select(StatusScheduler).where(StatusScheduler.status_update == 1)
+            )
+            record = result.scalars().all()
+            return record
