@@ -17,3 +17,12 @@ def back_menu():
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
+
+def back_setting_category():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="🔙⚙️ Вернться в настройки",
+                              callback_data='change_category')
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

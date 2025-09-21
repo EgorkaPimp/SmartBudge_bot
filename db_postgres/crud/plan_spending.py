@@ -24,3 +24,24 @@ async def delete_plan_spending(user_id: int, category: str):
             await db.delete(amount)
             await db.commit()
         return amount
+    
+async def update_plan_spending(user_id: int, category: str, new_amount: float):
+    async with AsyncDatabaseSession() as db:
+        result = await db.execute(select(PlanSpending).where(PlanSpending.user_id==user_id, 
+                                                             PlanSpending.category==category))
+        amount = result.scalars().first()
+        old_amount = amount.amount_money
+        amount.amount_money = new_amount
+        await db.commit()
+        await db.refresh(amount)
+        return old_amount - new_amount
+
+async def update_name_category(user_id: int, category: str, new_name: str):
+    async with AsyncDatabaseSession() as db:
+        result = await db.execute(select(PlanSpending).where(PlanSpending.user_id==user_id, 
+                                                             PlanSpending.category==category))
+        amount = result.scalars().first()
+        amount.category = new_name
+        await db.commit()
+        await db.refresh(amount)
+        return amount

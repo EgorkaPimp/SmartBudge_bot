@@ -34,3 +34,9 @@ async def status_share_search(user_id: int):
             select(Share).where((Share.slave_id == user_id)))
         expense = result.scalars().first()
         return expense
+    
+async def master_slave(user_id: int):
+        master = await status_share_search(user_id=user_id)
+        if master:
+                user_id = master.master_id
+        return user_id

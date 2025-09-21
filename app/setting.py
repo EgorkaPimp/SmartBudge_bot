@@ -6,6 +6,7 @@ from BaseClass.read_class import Images, Read
 from db_postgres.crud.users import delete_user
 
 image_logo = Images.setting()
+image_logo_start = Images.welcome_image()
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("settings"))
 async def settings(callback: types.CallbackQuery):
@@ -32,7 +33,7 @@ async def yes_delete(callback: types.CallbackQuery):
     await delete_user(callback.from_user.id)
     await callback.answer()
     await callback.message.delete()
-    await callback.message.answer_photo(photo=image_logo,
+    await callback.message.answer_photo(photo=image_logo_start,
                                         caption='Мне очень жадь что ты больше не считаешь свои расходы! \n'
                                         'Буду рад видеть тебя снова')
     

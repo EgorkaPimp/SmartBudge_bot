@@ -40,7 +40,7 @@ async def write_spending_sum(callback: types.CallbackQuery, state: FSMContext):
                                      reply_markup=back_menu())
     
 @RouterStore.my_router.message(Add_Finance.waiting_sum_spending)
-async def del_cat_inc(message: types.Message, state: FSMContext):
+async def add_spending_in_db(message: types.Message, state: FSMContext):
     LogCLassAll().debug("Add spending")
     
     data = await state.get_data()

@@ -37,7 +37,6 @@ async def update_expenses(user_id: int, category: str,
         print('start, new_category:', new_category, 'amount_expenses:', amount_expenses)
         # Обновляем поля
         if new_category is not None:
-            print(new_category)
             expense.category = new_category
         if amount_expenses is not None:
             expense.amount_expenses = amount_expenses
@@ -73,3 +72,14 @@ async def category_exists(user_id: int, category: str) -> bool:
         )
         expense = result.scalars().first()
         return expense is not None
+    
+async def update_expenses_amount(user_id: int, category: str, new_amount: float):
+     async with AsyncDatabaseSession() as db:
+        result = await db.execute(select(Expense).where(Expense.user_id==user_id, 
+                                                             Expense.category==category))
+        amount = result.scalars().first()
+        new_amount = amount.amount_expenses - new_amount
+        amount.amount_expenses = new_amount
+        await db.commit()
+        await db.refresh(amount)
+        return amount
