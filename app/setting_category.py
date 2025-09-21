@@ -49,7 +49,7 @@ async def del_category(callback: types.CallbackQuery):
     await delete_plan_spending(user_id=user_id, 
                                category=category)
     await callback.message.answer_photo(photo=image_logo,
-                                        caption=f"Категория {category} была успешно удалена",
+                                        caption=f"🗑️ Категория {category} была успешно удалена! ✅",
                                         reply_markup=setting_category())
     
 @RouterStore.my_router.callback_query(CallbackDataFilter("change_sum"))
@@ -92,7 +92,8 @@ async def change_sum_in_db(message: types.Message, state: FSMContext):
                                      new_amount=new_exp)
         
         await message.answer_photo(photo=image_logo,
-                                    caption='Новая сумма добавлена в план, для активации обновите период.',
+                                    caption='💰 Новая сумма успешно добавлена в план!\n'
+                                            '📊 Таблица уже обновлена и отображается с учётом перерасчёта ✨',
                                     reply_markup=setting_category())
         await state.clear()
     else:
@@ -140,7 +141,7 @@ async def add_sum_category(message: types.Message, state: FSMContext):
                                         category=category,
                                         new_name=message.text)
                 await message.answer_photo(photo=image_logo,
-                                    caption=f'Категория {category} переименована в: {message.text}',
+                                    caption=f'✏️ Категория {category} успешно переименована в {message.text}! ✅',
                                     reply_markup=setting_category())
                 await state.clear()
                 
