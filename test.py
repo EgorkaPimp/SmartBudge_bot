@@ -8,4 +8,3 @@ async def test():
     print(y.master_id)
     
 asyncio.run(test())
-print(123)

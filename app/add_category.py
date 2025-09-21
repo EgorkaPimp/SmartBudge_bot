@@ -11,7 +11,7 @@ from db_postgres.crud.expenses import add_expense, category_exists
 from db_postgres.crud.plan_spending import add_plan_spending
 from db_postgres.crud.shares import status_share_search
 
-image_logo = Images.logo()
+image_logo = Images.add_category()
 
 class Add_Finance(StatesGroup):
     waiting_category = State()

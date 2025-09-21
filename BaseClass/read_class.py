@@ -21,15 +21,23 @@ class Images:
 
     @classmethod
     def welcome_image(cls) -> FSInputFile:
-        return cls.get("welcome.jpg")
+        return cls.get("welcome.png")
 
     @classmethod
     def logo(cls) -> FSInputFile:
         return cls.get("logo.png")
+    
+    @classmethod
+    def add_category(cls) -> FSInputFile:
+        return cls.get("add_category.png")
+    
+    @classmethod
+    def add_spending(cls) -> FSInputFile:
+        return cls.get("add_spending.png")
 
     @classmethod
-    def banner(cls) -> FSInputFile:
-        return cls.get("banner.jpg")
+    def setting(cls) -> FSInputFile:
+        return cls.get("setting.png")
 
 class Read:
     def read_txt(path: str):

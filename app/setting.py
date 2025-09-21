@@ -5,7 +5,7 @@ from app.inline_button import setting, confirmation_deletion
 from BaseClass.read_class import Images, Read
 from db_postgres.crud.users import delete_user
 
-image_logo = Images.logo()
+image_logo = Images.setting()
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("settings"))
 async def settings(callback: types.CallbackQuery):

@@ -9,7 +9,7 @@ from db_postgres.crud.expenses import add_to_expenses
 from app.inline_button import categories, app_menu
 from app.inline_back import back_menu
 
-image_logo = Images.logo()
+image_logo = Images.add_spending()
 
 class Add_Finance(StatesGroup):
     waiting_sum_spending  = State()
