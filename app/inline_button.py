@@ -12,7 +12,7 @@ def app_start():
         ],
         [
             InlineKeyboardButton(text="🐙 My_Git",
-                            url='https://github.com/EgorkaPimp/home_bot'),
+                            url='https://github.com/EgorkaPimp/SmartBudge_bot'),
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
@@ -101,10 +101,10 @@ def confirmation_deletion():
 
 def notification_status(status_notification: int, status_update: int):
     if status_notification == 0:
-        button_notification = "Включить еженедельнное оповещение"
+        button_notification = "Включить ежедневный оповещение"
         notification_callback = "up_notification"
     elif status_notification == 1:
-        button_notification = "Выключить еженедельнное оповещение"
+        button_notification = "Выключить ежедневный оповещение"
         notification_callback = "down_notification"
     if status_update == 0:
         button_update = "Включить ежемесячное оповещение"
