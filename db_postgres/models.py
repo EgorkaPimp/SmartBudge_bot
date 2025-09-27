@@ -78,3 +78,25 @@ class Reminders(Base):
     status = Column(Integer)
     
     user = relationship("User", back_populates="reminders")
+    
+class Every_waste(Base):
+    __tablename__ = "every_waste"
+    
+    user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
+    category = Column(String, nullable=False)
+    expense = Column(Integer, nullable=False)
+    comment = Column(String)
+    
+class Time(Base):
+    __tablename__ = "time"
+    
+    user_id = Column(Integer, ForeignKey('user.id', ondelete="CASCADE"))
+    category = Column(String, nullable=False)
+    datatime = Column(String)
+    
+class Wishes(Base):
+    __tablename__ = "time"
+    
+    id = Column(Integer, autoincrement=True, primary_key=True)
+    user_id = Column(Integer)
+    comment = Column(String)
