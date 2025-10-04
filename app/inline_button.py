@@ -33,7 +33,7 @@ def app_menu():
         ],
         [
             InlineKeyboardButton(text="🤝 Поддержать",
-                              callback_data='donate_project'),
+                                url='https://yoomoney.ru/fundraise/1D6B61VAC77.251004'),
             InlineKeyboardButton(text="💡 Предложение", 
                                 callback_data="suggest_feature"
 )
