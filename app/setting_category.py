@@ -7,6 +7,7 @@ from app.inline_button import setting_category, categories
 from db_postgres.crud.shares import master_slave
 from db_postgres.crud.expenses import delete_expense, update_expenses_amount, update_expenses
 from db_postgres.crud.plan_spending import delete_plan_spending, update_plan_spending, update_name_category
+from db_postgres.crud.every_waste import update_record, delete_record
 from app.inline_back import back_setting_category
 from BaseClass.read_class import Images, Read
 
@@ -48,6 +49,9 @@ async def del_category(callback: types.CallbackQuery):
                          category=category)
     await delete_plan_spending(user_id=user_id, 
                                category=category)
+    await delete_record(user_id=user_id, 
+                               category=category)
+    
     await callback.message.answer_photo(photo=image_logo,
                                         caption=f"🗑️ Категория {category} была успешно удалена! ✅",
                                         reply_markup=setting_category())
@@ -133,13 +137,17 @@ async def add_sum_category(message: types.Message, state: FSMContext):
                 data = await state.get_data()
                 user_id = await master_slave(message.from_user.id)
                 category = data['category']
+                
                 await update_expenses(user_id=user_id,
                                       category=category,
                                       new_category=message.text)
-                
                 await update_name_category(user_id=user_id,
                                         category=category,
                                         new_name=message.text)
+                await update_record(user_id=user_id,
+                                    category=category,
+                                    new_category=message.text)
+                
                 await message.answer_photo(photo=image_logo,
                                     caption=f'✏️ Категория {category} успешно переименована в {message.text}! ✅',
                                     reply_markup=setting_category())

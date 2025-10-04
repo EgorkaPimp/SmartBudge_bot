@@ -5,6 +5,8 @@ from db_postgres.crud.shares import master_slave
 from db_postgres.crud.utils import get_category_comparison
 from app.show_table import create_table
 from db_postgres.crud.utils import sync_expenses_with_plans
+from db_postgres.crud.every_waste import delete_update
+from BaseClass.json_class import JsonWork
 
 
 async def daily_reminder():
@@ -27,5 +29,10 @@ async def update():
                                                parse_mode="MarkdownV2")
             if user.user_id == user_id:
                 await sync_expenses_with_plans(user.user_id)
+                worker = await JsonWork.create(user_id=user.user_id)
+                await worker.to_json()
+                await worker.save(f"report_{worker.user_id}")
+                """Удалить каждую трату после формирования отчета"""
+                await delete_update(user_id=user_id)
 
         

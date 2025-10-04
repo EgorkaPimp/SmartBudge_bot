@@ -32,6 +32,13 @@ def app_menu():
                               callback_data='change_category')
         ],
         [
+            InlineKeyboardButton(text="🤝 Поддержать",
+                              callback_data='donate_project'),
+            InlineKeyboardButton(text="💡 Предложение", 
+                                callback_data="suggest_feature"
+)
+        ],
+        [
             InlineKeyboardButton(text="⚙️ Настройки",
                             callback_data='settings'),
         ]
