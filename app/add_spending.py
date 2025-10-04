@@ -6,8 +6,10 @@ from aiogram import types, F
 from BaseClass.read_class import Images, Read
 from db_postgres.crud.shares import status_share_search
 from db_postgres.crud.expenses import add_to_expenses
+from db_postgres.crud.every_waste import add_record
 from app.inline_button import categories, app_menu
 from app.inline_back import back_menu
+import datetime
 
 image_logo = Images.add_spending()
 
@@ -56,7 +58,12 @@ async def add_spending_in_db(message: types.Message, state: FSMContext):
         new_db = await add_to_expenses(user_id=user_id,
                                     category=category,
                                     amount_to_add=float(spending))
-        print(new_db)
+        await add_record(user_id=user_id,
+                        category=category,
+                        expense=float(spending),
+                        data=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        
+        
         await message.answer_photo(photo=image_logo,
                                     caption=f'💎 Готово! Новый остаток {new_db.amount_expenses} '
                                     f'уже в категории {category}. ✨',

@@ -7,7 +7,7 @@ class LogCLassAll:
         self.logger.setLevel(logging.DEBUG)
 
         if not self.logger.handlers:
-            self.fh = logging.FileHandler("log/bot_new.log", mode="w", encoding="utf-8")
+            self.fh = logging.FileHandler("log/bot_new.log", 'w', encoding="utf-8")
             self.fh.setLevel(logging.DEBUG)
 
             formatter = logging.Formatter(
@@ -22,7 +22,7 @@ class LogCLassAll:
         aiogram_logger.setLevel(logging.DEBUG)
 
         if not aiogram_logger.handlers:
-            fh_aiogram = logging.FileHandler("log/aiogram.log", mode="w", encoding="utf-8")
+            fh_aiogram = logging.FileHandler("log/aiogram.log", 'w', encoding="utf-8")
             fh_aiogram.setLevel(logging.DEBUG)
 
             formatter_aiogram = logging.Formatter(
@@ -34,9 +34,9 @@ class LogCLassAll:
 
         # --- logger SQLAlchemy ---
         sa_logger = logging.getLogger("sqlalchemy.engine")
-        sa_logger.setLevel(logging.INFO)  # можно DEBUG, если нужны подробные запросы
+        sa_logger.setLevel(logging.INFO) 
         if not sa_logger.handlers:
-            fh_sa = logging.FileHandler("log/sqlalchemy.log", mode="w", encoding="utf-8")
+            fh_sa = logging.FileHandler("log/sqlalchemy.log", 'w', encoding="utf-8")
             fh_sa.setLevel(logging.INFO)
             formatter_sa = logging.Formatter(
                 '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
