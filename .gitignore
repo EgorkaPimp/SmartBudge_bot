@@ -8,3 +8,4 @@ bot.log
 log/
 *.db
 .env
+json/
