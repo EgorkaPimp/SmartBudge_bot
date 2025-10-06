@@ -4,6 +4,8 @@ from sqlalchemy.future import select
 
 async def add_user(user_id: int, username: str, role: int = 1):
     async with AsyncDatabaseSession() as db:
+        if username is None:
+            username = f"hidden{user_id}"
         result = await db.execute(
             select(User).where(User.id == user_id)
         )
