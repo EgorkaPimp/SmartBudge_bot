@@ -36,7 +36,7 @@ async def create_table(map_plan: dict):
         row = f"{cat['category'][:10].capitalize():<10} | {cat['spent']:>5} | {cat['plan']:>5} | {cat['remaining']:>5}"
         rows.append(row)
 
-    header = "Категория  | Траты | План  | Остаток"
+    header = "Категория  | Остаток | План  | Потрачено"
     divider = "-" * len(header)
     footer = f"Итого      | {sum_exp:>5} | {sum_plan:>5} | {sum_remaining:>5}"
 
