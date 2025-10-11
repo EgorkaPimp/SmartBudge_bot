@@ -13,8 +13,9 @@ async def daily_reminder():
         LogCLassAll().debug("Scheduler daily_reminder start")
         users = await search_user(notification=True)
         for user in users:
+            LogCLassAll().debug(user.user_id)
             await InstanceBot.bot.send_message(chat_id=user.user_id,
-                                               text="Я просто решил напомнить о себе")
+                                            text="Я просто решил напомнить о себе")
             
 async def update():
         LogCLassAll().debug("Scheduler update start")

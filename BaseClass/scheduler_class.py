@@ -13,6 +13,7 @@ class SchedulerStartBot(SchedulerStart):
         self.scheduler.add_job(func=daily_reminder,
                                trigger=CronTrigger(hour=22,
                                            minute=30))
+        # self.scheduler.add_job(daily_reminder, "interval", seconds=10)
         self.scheduler.add_job(func=update,
                                trigger=CronTrigger(day=1,
                                                    hour=10,))
