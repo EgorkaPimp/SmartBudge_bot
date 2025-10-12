@@ -11,7 +11,7 @@ class SchedulerStartBot(SchedulerStart):
     def __init__(self):
         super().__init__()
         self.scheduler.add_job(func=daily_reminder,
-                               trigger=CronTrigger(hour=22,
+                               trigger=CronTrigger(hour=21,
                                            minute=30))
         self.scheduler.add_job(func=update,
                                trigger=CronTrigger(day=1,

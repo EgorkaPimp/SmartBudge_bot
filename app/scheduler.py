@@ -11,8 +11,12 @@ async def daily_reminder():
         LogCLassAll().debug("Scheduler daily_reminder start")
         users = await search_user(notification=True)
         for user in users:
-            await InstanceBot.bot.send_message(chat_id=user.user_id,
-                                               text="Я просто решил напомнить о себе")
+            try:
+                await InstanceBot.bot.send_message(chat_id=user.user_id,
+                                                text="Я просто решил напомнить о себе")
+            except Exception as e:
+                LogCLassAll().debug(f"Error send message: {e}")
+                continue
             
 async def update():
         LogCLassAll().debug("Scheduler update start")
