@@ -111,7 +111,7 @@ def notification_status(status_notification: int, status_update: int):
         button_notification = "Включить ежедневный оповещение"
         notification_callback = "up_notification"
     elif status_notification == 1:
-        button_notification = "Выключить ежедневный оповещение"
+        button_notification = "Выключить ежедневное оповещение"
         notification_callback = "down_notification"
     if status_update == 0:
         button_update = "Включить ежемесячное оповещение"

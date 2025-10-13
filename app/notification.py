@@ -13,9 +13,9 @@ async def notification(callback: types.CallbackQuery):
     await callback.answer()
     status = await search_status(user_id = callback.from_user.id)
     if status.status_notification == 1:
-        message_notification = '✅Вы получаете оповещение каждый день в 22:45✅'
+        message_notification = '✅Вы получаете оповещение каждый день в 21:30✅'
     elif status.status_notification == 0:
-        message_notification = '❌Вы не получаете оповещение каждый день в 22:45❌'
+        message_notification = '❌Вы не получаете оповещение каждый день в 21:30❌'
     if status.status_update == 1:
         message_update = '✅Ваш перод трат обновиться 1 числа в 10:00✅'
     elif status.status_update == 0:
