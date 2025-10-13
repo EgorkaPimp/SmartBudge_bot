@@ -1,0 +1,20 @@
+{
+    "user_id": 0,
+    "budget": {
+        "categories": [
+            {
+                "name": "test",
+                "planned": 1,
+                "spent": 0,
+                "expenses": [
+                    {
+                        "date": "2025-10-04 13:50:17",
+                        "amount": 1,
+                        "note": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "report": ""
+}

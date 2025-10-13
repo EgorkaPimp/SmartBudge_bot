@@ -6,7 +6,9 @@ from BaseClass.read_class import Images
 from db_postgres.crud.utils import sync_expenses_with_plans, get_category_comparison
 from db_postgres.crud.shares import master_slave, search_slave
 from db_postgres.crud.status_scheduler import update_status_scheduler
+from db_postgres.crud.every_waste import delete_update
 from app.show_table import create_table
+from BaseClass.json_class import JsonWork
 
 image_logo = Images.setting()
 
@@ -20,6 +22,14 @@ async def update_period(callback: types.CallbackQuery):
         plan = await get_category_comparison(user_id=user_id)
         full_table = await create_table(plan)
         slave = await search_slave(user_id=user_id)
+        
+        """Создание отчета json"""
+        worker = await JsonWork.create(user_id=user_id)
+        await worker.to_json()
+        await worker.save(f"report_{worker.user_id}")
+        
+        """Удалить каждую трату после формирования отчета"""
+        await delete_update(user_id=user_id)
         
                    
         await callback.message.answer(text="📊📊Вот так выглядит твой месяц:📊📊\n" + full_table,

@@ -1,10 +1,7 @@
-from db_postgres.crud.shares import status_share_search
+from db_postgres.crud.users import add_user
 import asyncio
 
 async def test():
-    x = await status_share_search(933194755)
-    y = await status_share_search(875300228)
-    print(x)
-    print(y.master_id)
+    await add_user(6681145468, 'test11')
     
 asyncio.run(test())

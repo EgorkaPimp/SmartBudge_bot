@@ -32,6 +32,13 @@ def app_menu():
                               callback_data='change_category')
         ],
         [
+            InlineKeyboardButton(text="🤝 Поддержать",
+                                url='https://yoomoney.ru/fundraise/1D6B61VAC77.251004'),
+            InlineKeyboardButton(text="💡 Предложение", 
+                                callback_data="suggest_feature"
+)
+        ],
+        [
             InlineKeyboardButton(text="⚙️ Настройки",
                             callback_data='settings'),
         ]
