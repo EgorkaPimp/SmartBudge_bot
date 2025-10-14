@@ -17,7 +17,7 @@ async def daily_reminder():
                 await InstanceBot.bot.send_message(chat_id=user.user_id,
                                                 text="Я просто решил напомнить о себе")
             except Exception as e:
-                LogCLassAll().debug(f"Error send message: {e}")
+                LogCLassAll().debug(f"Error send message {user}: {e}")
                 continue
             
 async def update():
