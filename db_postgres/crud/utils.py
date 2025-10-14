@@ -25,9 +25,9 @@ async def get_category_comparison(user_id: int):
             difference = plan_val - exp_val
             comparison.append({
                 "category": cat,
-                "spent": exp_val,
+                "spent": difference,
                 "plan": plan_val,
-                "remaining": difference
+                "remaining": exp_val
             })
 
         return comparison
