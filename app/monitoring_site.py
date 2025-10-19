@@ -4,13 +4,21 @@ from aiogram import types
 from aiogram.utils.markdown import hlink
 from BaseClass.read_class import Images
 from app.inline_back import back_menu
+from db_postgres.crud.shares import status_share_search
 
 image_logo = Images.logo()
 
 @RouterStore.my_router.callback_query(CallbackDataFilter("site_monitoring"))
 async def site_monitoring(callback: types.CallbackQuery):
     LogCLassAll().debug("Press button: site_monitoring")
-    user_id = callback.from_user.id
+    await callback.answer()
+    
+    master = await status_share_search(callback.from_user.id)
+    if master:
+        user_id = master.master_id
+    else:
+        user_id = callback.from_user.id
+    
     link = f"http://monitorbot.duckdns.org/budget/{user_id}"
     message_text = (
     f"📊 <b>Твой личный дашборд расходов</b>\n\n"
