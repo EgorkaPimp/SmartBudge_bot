@@ -6,6 +6,7 @@ from db_postgres.crud.utils import get_category_comparison
 from app.show_table import create_table
 from db_postgres.crud.utils import sync_expenses_with_plans
 from db_postgres.crud.every_waste import delete_update
+from db_postgres.crud.users import delete_user
 from BaseClass.json_class import JsonWork
 
 
@@ -17,7 +18,10 @@ async def daily_reminder():
                 await InstanceBot.bot.send_message(chat_id=user.user_id,
                                                 text="Я просто решил напомнить о себе")
             except Exception as e:
-                LogCLassAll().debug(f"Error send message {user}: {e}")
+                LogCLassAll().debug(f"Error send message {user.user_id}: {e}")
+                if "bot was blocked" in str(e):
+                    await delete_user(user.user_id)
+                    LogCLassAll().debug(f"User {user.user_id} was deleted")
                 continue
             
 async def update():

@@ -39,6 +39,10 @@ def app_menu():
 )
         ],
         [
+            InlineKeyboardButton(text="🌐 Сайат мониторинга",
+                            callback_data='site_monitoring'),
+        ],
+        [
             InlineKeyboardButton(text="⚙️ Настройки",
                             callback_data='settings'),
         ]
