@@ -153,4 +153,13 @@ async def categories(user_id: int, interceptor: str):
     return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)
 
 
-    
+def add_voice():
+    inline_kb_list = [
+        [
+            InlineKeyboardButton(text="Да",
+                            callback_data='yes_add'),
+            InlineKeyboardButton(text="Нет",
+                            callback_data='press_menu')
+        ]
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=inline_kb_list)

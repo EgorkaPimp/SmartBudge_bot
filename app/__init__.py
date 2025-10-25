@@ -12,3 +12,4 @@ from app import update_period # noqa: F401
 from app import add_wishes # noqa: F401
 from app import donate # noqa: F401
 from app import monitoring_site # noqa: F401
+from app import voice # noqa: F401
